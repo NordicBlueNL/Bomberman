@@ -122,10 +122,10 @@ public class BomberConfigDialog extends JDialog
         getContentPane().add(jpanel, "Center");
         JPanel jpanel2 = new JPanel(new FlowLayout(1));
         jpanel2.setBorder(BorderFactory.createEtchedBorder());
-        JButton jbutton = new JButton("Sla op");
+        JButton jbutton = new JButton("Save");
         jbutton.addActionListener(this);
         jpanel2.add(jbutton);
-        JButton jbutton1 = new JButton("Sluit");
+        JButton jbutton1 = new JButton("Close");
         jbutton1.addActionListener(this);
         jpanel2.add(jbutton1);
         getContentPane().add(jpanel2, "South");
