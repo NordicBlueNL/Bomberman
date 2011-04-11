@@ -18,7 +18,7 @@ public class BomberSndEffect extends Thread
             SoundPlayer soundplayer = null;
             try
             {
-                soundplayer = new SoundPlayer((new File(BomberMain.RP + "src/Sounds/BomberSndEffects/" + s + ".mid")).getCanonicalPath());
+                soundplayer = new SoundPlayer((new File(BomberMain.RP + "src/Sounds/BomberSndEffect/" + s + ".mid")).getCanonicalPath());
             }
             catch(Exception exception) { }
             soundplayer.open();
