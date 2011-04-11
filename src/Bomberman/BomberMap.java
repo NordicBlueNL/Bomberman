@@ -42,14 +42,14 @@ public class BomberMap extends JPanel
     private BomberMain main;
     private boolean gameOver;
     private Color backgroundColor;
-    public int grid[][];
-    public boolean fireGrid[][];
-    public BomberBomb bombGrid[][];
-    public BomberBonus bonusGrid[][];
+    public int rooster[][];
+    public boolean fireRooster[][];
+    public BomberBommen bombGrid[][];
+    public BomberBonus bonusRooster[][];
     private Vector bombs;
     private Vector bonuses;
     private static Image mapImages[][];
-    public static Image bombImages[];
+    public static Image bombPlaatjes[];
     public static Image fireImages[][];
     public static Image fireBrickImages[][];
     public static Image bonusImages[][];
@@ -78,10 +78,10 @@ public class BomberMap extends JPanel
         main = null;
         gameOver = false;
         backgroundColor = null;
-        grid = null;
-        fireGrid = null;
+        rooster = null;
+        fireRooster = null;
         bombGrid = null;
-        bonusGrid = null;
+        bonusRooster = null;
         bombs = null;
         bonuses = null;
         main = bombermain;
@@ -105,7 +105,7 @@ public class BomberMap extends JPanel
 
             for(int k1 = 0; k1 < 2; k1++)
             {
-                mediatracker.addImage(bombImages[k1], i++);
+                mediatracker.addImage(bombPlaatjes[k1], i++);
             }
 
             for(int i2 = 0; i2 < 8; i2++)
@@ -130,28 +130,28 @@ public class BomberMap extends JPanel
         }
         bombs = new Vector();
         bonuses = new Vector();
-        fireGrid = new boolean[17][17];
-        bombGrid = new BomberBomb[17][17];
-        bonusGrid = new BomberBonus[17][17];
-        grid = new int[17][17];
+        fireRooster = new boolean[17][17];
+        bombGrid = new BomberBommen[17][17];
+        bonusRooster = new BomberBonus[17][17];
+        rooster = new int[17][17];
         for(int j = 0; j < 17; j++)
         {
             for(int l = 0; l < 17; l++)
             {
                 if(j == 0 || l == 0 || j == 16 || l == 16)
                 {
-                    grid[j][l] = 0;
+                    rooster[j][l] = 0;
                 } else
                 if((j & 1) == 0 && (l & 1) == 0)
                 {
-                    grid[j][l] = 0;
+                    rooster[j][l] = 0;
                 } else
                 {
-                    grid[j][l] = -1;
+                    rooster[j][l] = -1;
                 }
-                fireGrid[j][l] = false;
+                fireRooster[j][l] = false;
                 bombGrid[j][l] = null;
-                bonusGrid[j][l] = null;
+                bonusRooster[j][l] = null;
             }
 
         }
@@ -161,13 +161,13 @@ public class BomberMap extends JPanel
         {
             int j1 = bomberrandint.draw();
             int l1 = bomberrandint.draw();
-            if(grid[j1][l1] == -1)
+            if(rooster[j1][l1] == -1)
             {
-                grid[j1][l1] = 1;
+                rooster[j1][l1] = 1;
             }
         }
 
-        grid[1][1] = grid[2][1] = grid[1][2] = grid[1][15] = grid[2][15] = grid[1][14] = grid[15][1] = grid[14][1] = grid[15][2] = grid[15][15] = grid[15][14] = grid[14][15] = -1;
+        rooster[1][1] = rooster[2][1] = rooster[1][2] = rooster[1][15] = rooster[2][15] = rooster[1][14] = rooster[15][1] = rooster[14][1] = rooster[15][2] = rooster[15][15] = rooster[15][14] = rooster[14][15] = -1;
         backgroundColor = new Color(52, 108, 108);
         setPreferredSize(new Dimension(272, 272));
         setDoubleBuffered(true);
@@ -189,7 +189,7 @@ public class BomberMap extends JPanel
         int i1 = bonusRand.draw();
         if(i1 == 0 || i1 == 1)
         {
-            bonusGrid[k >> 4][l >> 4] = new BomberBonus(this, k, l, i1);
+            bonusRooster[k >> 4][l >> 4] = new BomberBonus(this, k, l, i1);
             bonuses.addElement(new Bonus(k, l));
         }
     }
@@ -207,8 +207,8 @@ public class BomberMap extends JPanel
             if(bonus.r == i1 && bonus.c == j1)
             {
                 bonuses.removeElementAt(k);
-                bonusGrid[bonus.r][bonus.c].kill();
-                bonusGrid[bonus.r][bonus.c] = null;
+                bonusRooster[bonus.r][bonus.c].kill();
+                bonusRooster[bonus.r][bonus.c] = null;
                 paintImmediately(bonus.r << 4, bonus.c << 4, 16, 16);
                 break;
             }
@@ -221,7 +221,7 @@ public class BomberMap extends JPanel
     {
         int l = (i >> 4) << 4;
         int i1 = (j >> 4) << 4;
-        bombGrid[l >> 4][i1 >> 4] = new BomberBomb(this, l, i1, k);
+        bombGrid[l >> 4][i1 >> 4] = new BomberBommen(this, l, i1, k);
         bombs.addElement(new Bomb(l, i1));
     }
 
@@ -250,17 +250,17 @@ public class BomberMap extends JPanel
         int i1 = (i >> 4) << 4;
         int j1 = (j >> 4) << 4;
         boolean flag = false;
-        if(grid[i1 >> 4][j1 >> 4] == 3)
+        if(rooster[i1 >> 4][j1 >> 4] == 3)
         {
             if(bombGrid[i1 >> 4][j1 >> 4] != null)
             {
                 bombGrid[i1 >> 4][j1 >> 4].shortBomb();
             }
         } else
-        if(!fireGrid[i1 >> 4][j1 >> 4])
+        if(!fireRooster[i1 >> 4][j1 >> 4])
         {
             flag = true;
-            BomberFire bomberfire = new BomberFire(this, i1, j1, l);
+            BomberVuur bomberfire = new BomberVuur(this, i1, j1, l);
         }
         if(flag && l == 0)
         {
@@ -274,15 +274,15 @@ public class BomberMap extends JPanel
             int l2 = 0;
             int i3 = 0;
             int j3 = 0;
-            for(int k3 = 1; k3 <= BomberGame.players[k].fireLength; k3++)
+            for(int k3 = 1; k3 <= BomberSpel.spelers[k].fireLength; k3++)
             {
                 if(l1 == 0 && (j1 >> byte0) + k3 < 17)
                 {
-                    if(grid[i1 >> byte0][(j1 >> byte0) + k3] != 0)
+                    if(rooster[i1 >> byte0][(j1 >> byte0) + k3] != 0)
                     {
-                        if(grid[i1 >> byte0][(j1 >> byte0) + k3] != -1)
+                        if(rooster[i1 >> byte0][(j1 >> byte0) + k3] != -1)
                         {
-                            l1 = grid[i1 >> byte0][(j1 >> byte0) + k3];
+                            l1 = rooster[i1 >> byte0][(j1 >> byte0) + k3];
                         }
                         l2++;
                     } else
@@ -292,11 +292,11 @@ public class BomberMap extends JPanel
                 }
                 if(k1 == 0 && (j1 >> byte0) - 1 >= 0)
                 {
-                    if(grid[i1 >> byte0][(j1 >> byte0) - k3] != 0)
+                    if(rooster[i1 >> byte0][(j1 >> byte0) - k3] != 0)
                     {
-                        if(grid[i1 >> byte0][(j1 >> byte0) - k3] != -1)
+                        if(rooster[i1 >> byte0][(j1 >> byte0) - k3] != -1)
                         {
-                            k1 = grid[i1 >> byte0][(j1 >> byte0) - k3];
+                            k1 = rooster[i1 >> byte0][(j1 >> byte0) - k3];
                         }
                         k2++;
                     } else
@@ -306,11 +306,11 @@ public class BomberMap extends JPanel
                 }
                 if(j2 == 0 && (i1 >> byte0) + k3 < 17)
                 {
-                    if(grid[(i1 >> byte0) + k3][j1 >> byte0] != 0)
+                    if(rooster[(i1 >> byte0) + k3][j1 >> byte0] != 0)
                     {
-                        if(grid[(i1 >> byte0) + k3][j1 >> byte0] != -1)
+                        if(rooster[(i1 >> byte0) + k3][j1 >> byte0] != -1)
                         {
-                            j2 = grid[(i1 >> byte0) + k3][j1 >> byte0];
+                            j2 = rooster[(i1 >> byte0) + k3][j1 >> byte0];
                         }
                         j3++;
                     } else
@@ -320,11 +320,11 @@ public class BomberMap extends JPanel
                 }
                 if(i2 == 0 && (i1 >> byte0) - k3 >= 0)
                 {
-                    if(grid[(i1 >> byte0) - k3][j1 >> byte0] != 0)
+                    if(rooster[(i1 >> byte0) - k3][j1 >> byte0] != 0)
                     {
-                        if(grid[(i1 >> byte0) - k3][j1 >> byte0] != -1)
+                        if(rooster[(i1 >> byte0) - k3][j1 >> byte0] != -1)
                         {
-                            i2 = grid[(i1 >> byte0) - k3][j1 >> byte0];
+                            i2 = rooster[(i1 >> byte0) - k3][j1 >> byte0];
                         }
                         i3++;
                     } else
@@ -424,9 +424,9 @@ public class BomberMap extends JPanel
             {
                 for(int j = 0; j < 17; j++)
                 {
-                    if(grid[i][j] > -1 && grid[i][j] != 3 && grid[i][j] != 7 && mapImages[level][grid[i][j]] != null)
+                    if(rooster[i][j] > -1 && rooster[i][j] != 3 && rooster[i][j] != 7 && mapImages[level][rooster[i][j]] != null)
                     {
-                        g1.drawImage(mapImages[level][grid[i][j]], i << 4, j << 4, 16, 16, null);
+                        g1.drawImage(mapImages[level][rooster[i][j]], i << 4, j << 4, 16, 16, null);
                     } else
                     if(mapImages[level][2] != null)
                     {
@@ -444,9 +444,9 @@ public class BomberMap extends JPanel
             for(int l = bonuses.size(); k < l; l = bonuses.size())
             {
                 Bonus bonus = (Bonus)bonuses.elementAt(k);
-                if(bonusGrid[bonus.r][bonus.c] != null)
+                if(bonusRooster[bonus.r][bonus.c] != null)
                 {
-                    bonusGrid[bonus.r][bonus.c].paint(g1);
+                    bonusRooster[bonus.r][bonus.c].paint(g1);
                 }
                 k++;
             }
@@ -482,9 +482,9 @@ public class BomberMap extends JPanel
             {
                 for(int j = 0; j < 17; j++)
                 {
-                    if(grid[i][j] > -1 && grid[i][j] != 3 && grid[i][j] != 7 && mapImages[level][grid[i][j]] != null)
+                    if(rooster[i][j] > -1 && rooster[i][j] != 3 && rooster[i][j] != 7 && mapImages[level][rooster[i][j]] != null)
                     {
-                        graphics2d.drawImage(mapImages[level][grid[i][j]], i << 4, j << 4, 16, 16, null);
+                        graphics2d.drawImage(mapImages[level][rooster[i][j]], i << 4, j << 4, 16, 16, null);
                     } else
                     if(mapImages[level][2] != null)
                     {
@@ -500,7 +500,7 @@ public class BomberMap extends JPanel
     static 
     {
         mapImages = null;
-        bombImages = null;
+        bombPlaatjes = null;
         fireImages = null;
         fireBrickImages = null;
         bonusImages = null;
@@ -518,7 +518,7 @@ public class BomberMap extends JPanel
         levelRand = new BomberRandInt(0, 100);
         bonusRand = new BomberRandInt(0, 7);
         mapImages = new Image[3][3];
-        bombImages = new Image[2];
+        bombPlaatjes = new Image[2];
         fireImages = new Image[8][8];
         fireBrickImages = new Image[3][8];
         bonusImages = new Image[2][2];
@@ -556,7 +556,7 @@ public class BomberMap extends JPanel
             for(int k = 0; k < 2; k++)
             {
                 String s = BomberMain.RP + "src/Images/BomberBombs/" + (k + 1) + ".gif";
-                bombImages[k] = Toolkit.getDefaultToolkit().getImage((new File(s)).getCanonicalPath());
+                bombPlaatjes[k] = Toolkit.getDefaultToolkit().getImage((new File(s)).getCanonicalPath());
             }
 
             for(int l = 0; l < 7; l++)

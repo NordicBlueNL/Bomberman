@@ -11,11 +11,11 @@ public class BomberBonus extends Thread
     private int x;
     private int y;
     private int frame;
-    private boolean alive;
+    private boolean levend;
     private int type;
-    private Image images[];
+    private Image plaatjes[];
     private static Object hints = null;
-    private static int FIRE = 0;
+    private static int VUUR = 0;
     private static int BOMB = 1;
 
     //BomberBonus, erft van BomberMap.
@@ -25,22 +25,22 @@ public class BomberBonus extends Thread
         x = 0;
         y = 0;
         frame = 0;
-        alive = true;
+        levend = true;
         type = 0;
-        images = null;
+        plaatjes = null;
         map = bombermap;
         x = i;
         y = j;
         type = k;
         //BomberBonus haalt de bonusplaatjes uit de BomberMap
-        images = BomberMap.bonusImages[k];
+        plaatjes = BomberMap.bonusImages[k];
         setPriority(10);
         start();
     }
 //Thread Run om te kijken of de persoon nog levend is of niet en wel of niet de bonus mag/kan pakken
     public synchronized void run()
     {
-        while(alive) 
+        while(levend) 
         {
             map.paintImmediately(x, y, 16, 16);
             frame = (frame + 1) % 2;
@@ -59,14 +59,14 @@ public class BomberBonus extends Thread
 //Sounds voor het vuur/etc als een bom ontploft
     public void giveToPlayer(int i)
     {
-        BomberMain.sndEffectPlayer.playSound("Bonus");
-        if(type == FIRE)
+        BomberMain.sndEffectSpeler.playSound("Bonus");
+        if(type == VUUR)
         {
-            BomberGame.players[i - 1].fireLength++;
+            BomberSpel.spelers[i - 1].fireLength++;
         } else
         if(type == BOMB)
         {
-            BomberGame.players[i - 1].totalBombs++;
+            BomberSpel.spelers[i - 1].totalBombs++;
         }
         kill();
     }
@@ -74,7 +74,7 @@ public class BomberBonus extends Thread
     //Kill laat zien of de persoon ontploft is, als dit zo is zet hij Alive op false. 
     public void kill()
     {
-        alive = false;
+        levend = false;
         interrupt();
     }
 //Paint van images
@@ -85,7 +85,7 @@ public class BomberBonus extends Thread
             paint2D(g);
         } else
         {
-            g.drawImage(images[frame], x, y, 16, 16, null);
+            g.drawImage(plaatjes[frame], x, y, 16, 16, null);
         }
     }
 //Paint van Images
@@ -93,7 +93,7 @@ public class BomberBonus extends Thread
     {
         Graphics2D graphics2d = (Graphics2D)g;
         graphics2d.setRenderingHints((RenderingHints)hints);
-        graphics2d.drawImage(images[frame], x, y, 16, 16, null);
+        graphics2d.drawImage(plaatjes[frame], x, y, 16, 16, null);
     }
 //Static laat ook weer de keys zien die gebruikt worden in het spel, de huidige keys. 
     static 

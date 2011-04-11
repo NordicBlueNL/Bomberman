@@ -12,8 +12,8 @@ public class BomberMain extends JFrame
 
     public static String RP = "./";
     private BomberMenu menu;
-    private BomberGame game;
-    public static BomberSndEffect sndEffectPlayer = null;
+    private BomberSpel game;
+    public static BomberSndEffect sndEffectSpeler = null;
     public static final int shiftCount = 4;
     public static final int size = 16;
 
@@ -86,7 +86,7 @@ public class BomberMain extends JFrame
         getLayeredPane().removeAll();
         menu = null;
         BomberMap bombermap = new BomberMap(this);
-        game = new BomberGame(this, bombermap, i);
+        game = new BomberSpel(this, bombermap, i);
         jdialog.dispose();
         show();
         if(Main.J2)
@@ -104,7 +104,7 @@ public class BomberMain extends JFrame
 
     static 
     {
-        sndEffectPlayer = new BomberSndEffect();
+        sndEffectSpeler = new BomberSndEffect();
     }
 
 

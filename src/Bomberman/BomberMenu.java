@@ -112,7 +112,7 @@ public class BomberMenu extends JPanel
             break;
 
         case 3: // '\003'
-            new BomberConfigDialog(main);
+            new BomberConfiguratiedialoog(main);
             break;
 
         case 4: // '\004'

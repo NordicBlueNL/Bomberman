@@ -8,7 +8,7 @@ import javax.swing.JComponent;
 public class BomberPlayer extends Thread
 {
 
-    public BomberGame game;
+    public BomberSpel game;
     private BomberMap map;
     public boolean bombGrid[][];
     private BomberKeyQueue keyQueue;
@@ -47,7 +47,7 @@ public class BomberPlayer extends Thread
     private static Object hints = null;
 
     //Bomberplayer erft van BomberGame. het daadwerkelijke lopen en veranderen van plaatje bij BombnerPlayer. 
-    public BomberPlayer(BomberGame bombergame, BomberMap bombermap, int i)
+    public BomberPlayer(BomberSpel bombergame, BomberMap bombermap, int i)
     {
         game = null;
         map = null;
@@ -263,13 +263,13 @@ public class BomberPlayer extends Thread
     {
         if(!isDead && !isExploding)
         {
-            BomberGame.playersLeft--;
+            BomberSpel.spelerLinks--;
             frame = 0;
             state = 4;
             moving = true;
             isExploding = true;
             keyPressed = false;
-            BomberMain.sndEffectPlayer.playSound("Die");
+            BomberMain.sndEffectSpeler.playSound("Die");
             interrupt();
         }
     }
@@ -300,7 +300,7 @@ public class BomberPlayer extends Thread
         int j = 0;
         do
         {
-            if(!isExploding && !isDead && bombKeyDown && isActive && totalBombs - usedBombs > 0 && map.grid[x >> byte0][y >> byte0] != 3 && !bombGrid[x + byte3 >> 4][y + byte3 >> 4])
+            if(!isExploding && !isDead && bombKeyDown && isActive && totalBombs - usedBombs > 0 && map.rooster[x >> byte0][y >> byte0] != 3 && !bombGrid[x + byte3 >> 4][y + byte3 >> 4])
             {
                 usedBombs++;
                 bombGrid[x + byte3 >> 4][y + byte3 >> 4] = true;
@@ -317,13 +317,13 @@ public class BomberPlayer extends Thread
                     if((currentDirKeyDown & 4) > 0)
                     {
                         state = 2;
-                        boolean flag1 = x % byte2 != 0 || y % byte2 == 0 && map.grid[(x >> byte0) - 1][y >> byte0] <= -1;
+                        boolean flag1 = x % byte2 != 0 || y % byte2 == 0 && map.rooster[(x >> byte0) - 1][y >> byte0] <= -1;
                         if(!flag1)
                         {
                             int k = 0;
                             for(k = -byte1; k < 0; k += byte2 / 4)
                             {
-                                if((y + k) % byte2 != 0 || map.grid[(x >> byte0) - 1][y + k >> byte0] > -1)
+                                if((y + k) % byte2 != 0 || map.rooster[(x >> byte0) - 1][y + k >> byte0] > -1)
                                 {
                                     continue;
                                 }
@@ -335,7 +335,7 @@ public class BomberPlayer extends Thread
                             {
                                 for(k = byte2 / 4; k <= byte1; k += byte2 / 4)
                                 {
-                                    if((y + k) % byte2 != 0 || map.grid[(x >> byte0) - 1][y + k >> byte0] > -1)
+                                    if((y + k) % byte2 != 0 || map.rooster[(x >> byte0) - 1][y + k >> byte0] > -1)
                                     {
                                         continue;
                                     }
@@ -370,13 +370,13 @@ public class BomberPlayer extends Thread
                     {
                         state = 3;
                         boolean flag2 = false;
-                        flag2 = x % byte2 != 0 || y % byte2 == 0 && map.grid[(x >> byte0) + 1][y >> byte0] <= -1;
+                        flag2 = x % byte2 != 0 || y % byte2 == 0 && map.rooster[(x >> byte0) + 1][y >> byte0] <= -1;
                         if(!flag2)
                         {
                             int l = 0;
                             for(l = -byte1; l < 0; l += byte2 / 4)
                             {
-                                if((y + l) % byte2 != 0 || map.grid[(x >> byte0) + 1][y + l >> byte0] > -1)
+                                if((y + l) % byte2 != 0 || map.rooster[(x >> byte0) + 1][y + l >> byte0] > -1)
                                 {
                                     continue;
                                 }
@@ -388,7 +388,7 @@ public class BomberPlayer extends Thread
                             {
                                 for(l = byte2 / 4; l <= byte1; l += byte2 / 4)
                                 {
-                                    if((y + l) % byte2 != 0 || map.grid[(x >> byte0) + 1][y + l >> byte0] > -1)
+                                    if((y + l) % byte2 != 0 || map.rooster[(x >> byte0) + 1][y + l >> byte0] > -1)
                                     {
                                         continue;
                                     }
@@ -423,13 +423,13 @@ public class BomberPlayer extends Thread
                     {
                         state = 0;
                         boolean flag3 = false;
-                        flag3 = y % byte2 != 0 || x % byte2 == 0 && map.grid[x >> byte0][(y >> byte0) - 1] <= -1;
+                        flag3 = y % byte2 != 0 || x % byte2 == 0 && map.rooster[x >> byte0][(y >> byte0) - 1] <= -1;
                         if(!flag3)
                         {
                             int i1 = 0;
                             for(i1 = -byte1; i1 < 0; i1 += byte2 / 4)
                             {
-                                if((x + i1) % byte2 != 0 || map.grid[x + i1 >> byte0][(y >> byte0) - 1] > -1)
+                                if((x + i1) % byte2 != 0 || map.rooster[x + i1 >> byte0][(y >> byte0) - 1] > -1)
                                 {
                                     continue;
                                 }
@@ -441,7 +441,7 @@ public class BomberPlayer extends Thread
                             {
                                 for(i1 = byte2 / 4; i1 <= byte1; i1 += byte2 / 4)
                                 {
-                                    if((x + i1) % byte2 != 0 || map.grid[x + i1 >> byte0][(y >> byte0) - 1] > -1)
+                                    if((x + i1) % byte2 != 0 || map.rooster[x + i1 >> byte0][(y >> byte0) - 1] > -1)
                                     {
                                         continue;
                                     }
@@ -476,13 +476,13 @@ public class BomberPlayer extends Thread
                     {
                         state = 1;
                         boolean flag4 = false;
-                        flag4 = y % byte2 != 0 || x % byte2 == 0 && map.grid[x >> byte0][(y >> byte0) + 1] <= -1;
+                        flag4 = y % byte2 != 0 || x % byte2 == 0 && map.rooster[x >> byte0][(y >> byte0) + 1] <= -1;
                         if(!flag4)
                         {
                             int j1 = 0;
                             for(j1 = -byte1; j1 < 0; j1 += byte2 / 4)
                             {
-                                if((x + j1) % byte2 != 0 || map.grid[x + j1 >> byte0][(y >> byte0) + 1] > -1)
+                                if((x + j1) % byte2 != 0 || map.rooster[x + j1 >> byte0][(y >> byte0) + 1] > -1)
                                 {
                                     continue;
                                 }
@@ -494,7 +494,7 @@ public class BomberPlayer extends Thread
                             {
                                 for(j1 = byte2 / 4; j1 <= byte1; j1 += byte2 / 4)
                                 {
-                                    if((x + j1) % byte2 != 0 || map.grid[x + j1 >> byte0][(y >> byte0) + 1] > -1)
+                                    if((x + j1) % byte2 != 0 || map.rooster[x + j1 >> byte0][(y >> byte0) + 1] > -1)
                                     {
                                         continue;
                                     }
@@ -549,24 +549,24 @@ public class BomberPlayer extends Thread
                 game.paintImmediately(x, y - byte3, 16, 22);
                 break;
             }
-            if(map.bonusGrid[x >> byte0][y >> byte0] != null)
+            if(map.bonusRooster[x >> byte0][y >> byte0] != null)
             {
                 i = x;
                 j = y;
             } else
-            if(map.bonusGrid[x >> byte0][y + byte3 >> byte0] != null)
+            if(map.bonusRooster[x >> byte0][y + byte3 >> byte0] != null)
             {
                 i = x;
                 j = y + byte3;
             } else
-            if(map.bonusGrid[x + byte3 >> byte0][y >> byte0] != null)
+            if(map.bonusRooster[x + byte3 >> byte0][y >> byte0] != null)
             {
                 i = x + byte3;
                 j = y;
             }
             if(i != 0 && j != 0)
             {
-                map.bonusGrid[i >> byte0][j >> byte0].giveToPlayer(playerNo);
+                map.bonusRooster[i >> byte0][j >> byte0].giveToPlayer(playerNo);
                 i = j = 0;
             }
             if(isDead)

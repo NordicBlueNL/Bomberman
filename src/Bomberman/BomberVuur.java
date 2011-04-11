@@ -4,41 +4,41 @@ import java.awt.*;
 import javax.swing.JComponent;
 
 //BomberFire Thread. Klasse Vuur na de Bom
-public class BomberFire extends Thread
+public class BomberVuur extends Thread
 {
 
     private BomberMap map;
-    private int grid[][];
+    private int rooster[][];
     private int x;
     private int y;
     private int type;
     private int frame;
-    private int owner;
-    private static Image images[][] = null;
+    private int eigenaar;
+    private static Image plaatjes[][] = null;
     private static Object hints = null;
 
-    public BomberFire(BomberMap bombermap, int i, int j, int k)
+    public BomberVuur(BomberMap bombermap, int i, int j, int k)
     {
         map = null;
-        grid = null;
+        rooster = null;
         x = 0;
         y = 0;
         type = 0;
         frame = 0;
-        owner = 0;
+        eigenaar = 0;
         map = bombermap;
-        grid = bombermap.grid;
+        rooster = bombermap.rooster;
         x = i;
         y = j;
         type = k;
-        owner = owner - 1;
-        images = BomberMap.fireImages;
+        eigenaar = eigenaar - 1;
+        plaatjes = BomberMap.fireImages;
         if(k == 7)
         {
-            grid[i >> 4][j >> 4] = 7;
+            rooster[i >> 4][j >> 4] = 7;
         }
-        bombermap.fireGrid[i >> 4][j >> 4] = true;
-        if(bombermap.bonusGrid[i >> 4][j >> 4] != null)
+        bombermap.fireRooster[i >> 4][j >> 4] = true;
+        if(bombermap.bonusRooster[i >> 4][j >> 4] != null)
         {
             bombermap.removeBonus(i, j);
         }
@@ -51,11 +51,11 @@ public class BomberFire extends Thread
         do
         {
             paint();
-            for(int i = 0; i < BomberGame.totalPlayers; i++)
+            for(int i = 0; i < BomberSpel.totaalSpelers; i++)
             {
-                if(BomberGame.players[i].x >> 4 == x >> 4 && BomberGame.players[i].y >> 4 == y >> 4)
+                if(BomberSpel.spelers[i].x >> 4 == x >> 4 && BomberSpel.spelers[i].y >> 4 == y >> 4)
                 {
-                    BomberGame.players[i].kill();
+                    BomberSpel.spelers[i].kill();
                 }
             }
 
@@ -66,8 +66,8 @@ public class BomberFire extends Thread
             }
             catch(Exception exception) { }
         } while(frame <= 7);
-        map.grid[x >> 4][y >> 4] = -1;
-        map.fireGrid[x >> 4][y >> 4] = false;
+        map.rooster[x >> 4][y >> 4] = -1;
+        map.fireRooster[x >> 4][y >> 4] = false;
         map.paintImmediately(x, y, 16, 16);
         if(type == 7)
         {
@@ -83,7 +83,7 @@ public class BomberFire extends Thread
             paint2D(map.getGraphics());
         } else
         {
-            g.drawImage(images[type][frame], x, y, 16, 16, null);
+            g.drawImage(plaatjes[type][frame], x, y, 16, 16, null);
         }
         g.dispose();
     }
@@ -92,7 +92,7 @@ public class BomberFire extends Thread
     {
         Graphics2D graphics2d = (Graphics2D)g;
         graphics2d.setRenderingHints((RenderingHints)hints);
-        graphics2d.drawImage(images[type][frame], x, y, 16, 16, null);
+        graphics2d.drawImage(plaatjes[type][frame], x, y, 16, 16, null);
     }
     //toetshoudbaarheid
     static 

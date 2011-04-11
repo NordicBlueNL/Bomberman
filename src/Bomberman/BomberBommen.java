@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.JComponent;
 
 //BomberBomb, deze heeft een Thread. 
-public class BomberBomb extends Thread
+public class BomberBommen extends Thread
 {
 
     private BomberMap map;
@@ -12,29 +12,29 @@ public class BomberBomb extends Thread
     private int y;
     private int frame;
     //levend of niet levend?
-    private boolean alive;
-    private int owner;
+    private boolean levend;
+    private int eigenaar;
     //Tijd bijna over?
-    private int countDown;
-    private static Image images[] = null;
+    private int aftellen;
+    private static Image plaatjes[] = null;
     private static Object hints = null;
 
-    public BomberBomb(BomberMap bombermap, int i, int j, int k)
+    public BomberBommen(BomberMap bombermap, int i, int j, int k)
     {
         map = null;
         x = 0;
         y = 0;
         frame = 0;
-        alive = true;
-        owner = 0;
+        levend = true;
+        eigenaar = 0;
         //tijd voordat het spel is afgelopen (miliseconde)(3minuten9seconden())
-        countDown = 3900;
+        aftellen = 3900;
         map = bombermap;
         x = i;
         y = j;
-        owner = k - 1;
-        images = BomberMap.bombImages;
-        bombermap.grid[i >> 4][j >> 4] = 3;
+        eigenaar = k - 1;
+        plaatjes = BomberMap.bombPlaatjes;
+        bombermap.rooster[i >> 4][j >> 4] = 3;
         setPriority(10);
         start();
     }
@@ -42,7 +42,7 @@ public class BomberBomb extends Thread
     //Run, als het allemaal aan is. met een meth. thread om de tijd bij te houden. 
     public synchronized void run()
     {
-        while(alive) 
+        while(levend) 
         {
             map.paintImmediately(x, y, 16, 16);
             frame = (frame + 1) % 2;
@@ -51,29 +51,29 @@ public class BomberBomb extends Thread
                 Thread.sleep(130L);
             }
             catch(Exception exception) { }
-            if(!alive)
+            if(!levend)
             {
                 break;
             }
-            countDown -= 130;
-            if(countDown <= 0)
+            aftellen -= 130;
+            if(aftellen <= 0)
             {
                 break;
             }
         }
-        map.grid[x >> 4][y >> 4] = -1;
-        BomberGame.players[owner].usedBombs--;
+        map.rooster[x >> 4][y >> 4] = -1;
+        BomberSpel.spelers[eigenaar].usedBombs--;
         map.bombGrid[x >> 4][y >> 4] = null;
-        BomberGame.players[owner].bombGrid[x >> 4][y >> 4] = false;
+        BomberSpel.spelers[eigenaar].bombGrid[x >> 4][y >> 4] = false;
         map.removeBomb(x, y);
-        BomberMain.sndEffectPlayer.playSound("Explosion");
-        map.createFire(x, y, owner, 0);
+        BomberMain.sndEffectSpeler.playSound("Explosion");
+        map.createFire(x, y, eigenaar, 0);
     }
 
   //shortBomb, kort maar krachtig korte bom inzetten
     public void shortBomb()
     {
-        alive = false;
+        levend = false;
         interrupt();
     }
 //Paint images. 
@@ -84,7 +84,7 @@ public class BomberBomb extends Thread
             paint2D(g);
         } else
         {
-            g.drawImage(images[frame], x, y, 16, 16, null);
+            g.drawImage(plaatjes[frame], x, y, 16, 16, null);
         }
     }
 //Paint images
@@ -92,7 +92,7 @@ public class BomberBomb extends Thread
     {
         Graphics2D graphics2d = (Graphics2D)g;
         graphics2d.setRenderingHints((RenderingHints)hints);
-        graphics2d.drawImage(images[frame], x, y, 16, 16, null);
+        graphics2d.drawImage(plaatjes[frame], x, y, 16, 16, null);
     }
 //Static Keys en Bepaalt het basistype van alle toetsen gebruikt om de verschillende aspecten van de rendering en imaging pijpleidingen controle
     static 

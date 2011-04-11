@@ -6,41 +6,41 @@ import java.io.File;
 import javax.swing.*;
 
 //BomberGame Implements ActionListener en is een JPanel
-public class BomberGame extends JPanel
+public class BomberSpel extends JPanel
     implements ActionListener
 {
 
     private BomberMain main;
     private boolean gameOver;
     private BomberMap map;
-    private int winner;
+    private int winnaar;
     //Timer om tijd bij te houden spel. 
     private Timer timer;
-    private int elapsedSec;
+    private int verstrekenSeconden;
     private static Object hints = null;
-    private static Image images[];
-    public static int totalPlayers;
-    public static int playersLeft;
-    public static BomberPlayer players[] = null;
+    private static Image plaatjes[];
+    public static int totaalSpelers;
+    public static int spelerLinks;
+    public static BomberPlayer spelers[] = null;
 
     //BomberGame erft van BomberMain en BomberMap. 
-    public BomberGame(BomberMain bombermain, BomberMap bombermap, int i)
+    public BomberSpel(BomberMain bombermain, BomberMap bombermap, int i)
     {
         main = null;
         gameOver = false;
         map = null;
-        winner = -1;
+        winnaar = -1;
         timer = null;
-        elapsedSec = 0;
+        verstrekenSeconden = 0;
         main = bombermain;
         map = bombermap;
-        totalPlayers = playersLeft = i;
+        totaalSpelers = spelerLinks = i;
         try
         {
             MediaTracker mediatracker = new MediaTracker(this);
             for(int k = 0; k < 6; k++)
             {
-                mediatracker.addImage(images[k], k);
+                mediatracker.addImage(plaatjes[k], k);
             }
 
             mediatracker.waitForAll();
@@ -49,10 +49,10 @@ public class BomberGame extends JPanel
         {
             new ErrorDialog(exception);
         }
-        players = new BomberPlayer[i];
+        spelers = new BomberPlayer[i];
         for(int j = 0; j < i; j++)
         {
-            players[j] = new BomberPlayer(this, bombermap, j + 1);
+            spelers[j] = new BomberPlayer(this, bombermap, j + 1);
         }
 
         setDoubleBuffered(true);
@@ -66,9 +66,9 @@ public class BomberGame extends JPanel
     {
         if(!gameOver)
         {
-            for(int i = 0; i < totalPlayers; i++)
+            for(int i = 0; i < totaalSpelers; i++)
             {
-                players[i].keyPressed(keyevent);
+                spelers[i].keyPressed(keyevent);
             }
 
         } else
@@ -85,9 +85,9 @@ public class BomberGame extends JPanel
     {
         if(!gameOver)
         {
-            for(int i = 0; i < totalPlayers; i++)
+            for(int i = 0; i < totaalSpelers; i++)
             {
-                players[i].keyReleased(keyevent);
+                spelers[i].keyReleased(keyevent);
             }
 
         }
@@ -98,9 +98,9 @@ public class BomberGame extends JPanel
         Graphics g1 = g;
         if(!gameOver)
         {
-            for(int i = 0; i < totalPlayers; i++)
+            for(int i = 0; i < totaalSpelers; i++)
             {
-                players[i].paint(g);
+                spelers[i].paint(g);
             }
 
         }
@@ -111,20 +111,20 @@ public class BomberGame extends JPanel
         {
             if(gameOver)
             {
-                g1.drawImage(images[winner], 0, -25, 272, 272, this);
-                if(elapsedSec == 0)
+                g1.drawImage(plaatjes[winnaar], 0, -25, 272, 272, this);
+                if(verstrekenSeconden == 0)
                 {
-                    g1.drawImage(images[5], 0, 272 - images[5].getHeight(this) / 2, images[5].getWidth(this) / 2, images[5].getHeight(this) / 2, this);
+                    g1.drawImage(plaatjes[5], 0, 272 - plaatjes[5].getHeight(this) / 2, plaatjes[5].getWidth(this) / 2, plaatjes[5].getHeight(this) / 2, this);
                 } else
                 {
-                    g1.fillRect(0, 272 - images[5].getHeight(this) / 2, images[5].getWidth(this) / 2, images[5].getHeight(this) / 2);
+                    g1.fillRect(0, 272 - plaatjes[5].getHeight(this) / 2, plaatjes[5].getWidth(this) / 2, plaatjes[5].getHeight(this) / 2);
                 }
             }
-            if(playersLeft <= 1 && timer == null)
+            if(spelerLinks <= 1 && timer == null)
             {
-                for(int j = 0; j < totalPlayers; j++)
+                for(int j = 0; j < totaalSpelers; j++)
                 {
-                    players[j].deactivate();
+                    spelers[j].deactivate();
                 }
 
                 timer = new Timer(1000, this);
@@ -144,20 +144,20 @@ public class BomberGame extends JPanel
         graphics2d.setRenderingHints((RenderingHints)hints);
         if(gameOver)
         {
-            graphics2d.drawImage(images[winner], 0, -25, 272, 272, this);
-            if(elapsedSec == 0)
+            graphics2d.drawImage(plaatjes[winnaar], 0, -25, 272, 272, this);
+            if(verstrekenSeconden == 0)
             {
-                graphics2d.drawImage(images[5], 0, 272 - images[5].getHeight(this) / 2, images[5].getWidth(this) / 2, images[5].getHeight(this) / 2, this);
+                graphics2d.drawImage(plaatjes[5], 0, 272 - plaatjes[5].getHeight(this) / 2, plaatjes[5].getWidth(this) / 2, plaatjes[5].getHeight(this) / 2, this);
             } else
             {
-                graphics2d.fillRect(0, 272 - images[5].getHeight(this) / 2, images[5].getWidth(this) / 2, images[5].getHeight(this) / 2);
+                graphics2d.fillRect(0, 272 - plaatjes[5].getHeight(this) / 2, plaatjes[5].getWidth(this) / 2, plaatjes[5].getHeight(this) / 2);
             }
         }
-        if(playersLeft <= 1 && timer == null)
+        if(spelerLinks <= 1 && timer == null)
         {
-            for(int i = 0; i < totalPlayers; i++)
+            for(int i = 0; i < totaalSpelers; i++)
             {
-                players[i].deactivate();
+                spelers[i].deactivate();
             }
 
             timer = new Timer(1000, this);
@@ -167,21 +167,21 @@ public class BomberGame extends JPanel
 //public ActionPerformed, laat de BackGroundManager bezig zijn. 
     public void actionPerformed(ActionEvent actionevent)
     {
-        elapsedSec++;
-        if(elapsedSec >= 4)
+        verstrekenSeconden++;
+        if(verstrekenSeconden >= 4)
         {
             if(Main.J2)
             {
-                BomberBGM.mute();
+                BomberBGM.dempen();
             }
-            winner = 4;
-            for(int i = 0; i < totalPlayers; i++)
+            winnaar = 4;
+            for(int i = 0; i < totaalSpelers; i++)
             {
-                if(players[i].isDead())
+                if(spelers[i].isDead())
                 {
                     continue;
                 }
-                winner = i;
+                winnaar = i;
                 break;
             }
 
@@ -193,16 +193,16 @@ public class BomberGame extends JPanel
         }
         if(gameOver)
         {
-            elapsedSec %= 2;
-            paintImmediately(0, 272 - images[5].getHeight(this) / 2, images[5].getWidth(this) / 2, images[5].getHeight(this) / 2);
+            verstrekenSeconden %= 2;
+            paintImmediately(0, 272 - plaatjes[5].getHeight(this) / 2, plaatjes[5].getWidth(this) / 2, plaatjes[5].getHeight(this) / 2);
         }
     }
 // Houd de keys in stand en laat zien wie er de winnaar is.(dmv een plaatje)
     static 
     {
-        images = null;
-        totalPlayers = 4;
-        playersLeft = totalPlayers;
+        plaatjes = null;
+        totaalSpelers = 4;
+        spelerLinks = totaalSpelers;
         if(Main.J2)
         {
             RenderingHints renderinghints = null;
@@ -216,19 +216,19 @@ public class BomberGame extends JPanel
         }
         String s = BomberMain.RP + "src/Images/BomberEndGame/";
         Object obj = null;
-        images = new Image[6];
+        plaatjes = new Image[6];
         try
         {
             for(int i = 0; i < 4; i++)
             {
                 String s1 = s + "Player " + (i + 1) + " Wins.jpg";
-                images[i] = Toolkit.getDefaultToolkit().getImage((new File(s1)).getCanonicalPath());
+                plaatjes[i] = Toolkit.getDefaultToolkit().getImage((new File(s1)).getCanonicalPath());
             }
 
             String s2 = s + "Draw.jpg";
-            images[4] = Toolkit.getDefaultToolkit().getImage((new File(s2)).getCanonicalPath());
+            plaatjes[4] = Toolkit.getDefaultToolkit().getImage((new File(s2)).getCanonicalPath());
             s2 = s + "Enter to Continue.jpg";
-            images[5] = Toolkit.getDefaultToolkit().getImage((new File(s2)).getCanonicalPath());
+            plaatjes[5] = Toolkit.getDefaultToolkit().getImage((new File(s2)).getCanonicalPath());
         }
         catch(Exception exception)
         {
