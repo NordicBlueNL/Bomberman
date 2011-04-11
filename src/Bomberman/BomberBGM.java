@@ -6,7 +6,7 @@ import java.util.Vector;
 //Bomberman BackGroundManager 
 public class BomberBGM
 {
-
+ 
     private static Object player;
     private static int lastSelection = -1;
 
