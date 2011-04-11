@@ -5,7 +5,7 @@ import java.io.*;
 public abstract class BomberKeyConfig
 {
 
-    public static int keys[][] = null;
+    public static int toetsen[][] = null;
     public static final int P1 = 0;
     public static final int P2 = 1;
     public static final int P3 = 2;
@@ -20,13 +20,13 @@ public abstract class BomberKeyConfig
     {
     }
 
-    public static boolean openFile()
+    public static boolean openBestand()
     {
         boolean flag = true;
         try
         {
             ObjectInputStream objectinputstream = new ObjectInputStream(new FileInputStream("BomberKeyConfig.dat"));
-            keys = (int[][])objectinputstream.readObject();
+            toetsen = (int[][])objectinputstream.readObject();
             objectinputstream.close();
         }
         catch(Exception exception)
@@ -36,12 +36,12 @@ public abstract class BomberKeyConfig
         return flag;
     }
 
-    public static void writeFile()
+    public static void schrijfBestand()
     {
         try
         {
             ObjectOutputStream objectoutputstream = new ObjectOutputStream(new FileOutputStream("BomberKeyConfig.dat"));
-            objectoutputstream.writeObject((int[][])keys);
+            objectoutputstream.writeObject((int[][])toetsen);
             objectoutputstream.close();
         }
         catch(Exception exception)
@@ -50,41 +50,41 @@ public abstract class BomberKeyConfig
         }
     }
 
-    public static void createDefaultFile()
+    public static void maakStandaardBestand()
     {
-        if(keys == null)
+        if(toetsen == null)
         {
-            keys = new int[4][5];
+            toetsen = new int[4][5];
         }
-        keys[0][0] = 38;
-        keys[0][1] = 40;
-        keys[0][2] = 37;
-        keys[0][3] = 39;
-        keys[0][4] = 96;
-        keys[1][0] = 87;
-        keys[1][1] = 83;
-        keys[1][2] = 65;
-        keys[1][3] = 68;
-        keys[1][4] = 32;
-        keys[2][0] = 73;
-        keys[2][1] = 75;
-        keys[2][2] = 74;
-        keys[2][3] = 76;
-        keys[2][4] = 92;
-        keys[3][0] = 104;
-        keys[3][1] = 101;
-        keys[3][2] = 100;
-        keys[3][3] = 102;
-        keys[3][4] = 105;
-        writeFile();
+        toetsen[0][0] = 38;
+        toetsen[0][1] = 40;
+        toetsen[0][2] = 37;
+        toetsen[0][3] = 39;
+        toetsen[0][4] = 96;
+        toetsen[1][0] = 87;
+        toetsen[1][1] = 83;
+        toetsen[1][2] = 65;
+        toetsen[1][3] = 68;
+        toetsen[1][4] = 32;
+        toetsen[2][0] = 73;
+        toetsen[2][1] = 75;
+        toetsen[2][2] = 74;
+        toetsen[2][3] = 76;
+        toetsen[2][4] = 92;
+        toetsen[3][0] = 104;
+        toetsen[3][1] = 101;
+        toetsen[3][2] = 100;
+        toetsen[3][3] = 102;
+        toetsen[3][4] = 105;
+        schrijfBestand();
     }
 
     static 
     {
-        if(!openFile())
+        if(!openBestand())
         {
-            createDefaultFile();
-            openFile();
+            maakStandaardBestand();
+            openBestand();
         }
     }
 }

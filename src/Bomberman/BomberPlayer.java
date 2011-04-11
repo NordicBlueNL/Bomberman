@@ -135,7 +135,7 @@ public class BomberPlayer extends Thread
         keys = new int[5];
         for(int i1 = 0; i1 <= 4; i1++)
         {
-            keys[i1] = BomberKeyConfig.keys[i - 1][i1];
+            keys[i1] = BomberKeyConfig.toetsen[i - 1][i1];
         }
 
         setPriority(10);
@@ -202,34 +202,34 @@ public class BomberPlayer extends Thread
             {
                 dirKeysDown ^= 2;
                 currentDirKeyDown ^= 2;
-                keyQueue.removeItems((byte)2);
+                keyQueue.verwijderItems((byte)2);
             } else
             if(keyevent.getKeyCode() == keys[0])
             {
                 dirKeysDown ^= 1;
                 currentDirKeyDown ^= 1;
-                keyQueue.removeItems((byte)1);
+                keyQueue.verwijderItems((byte)1);
             } else
             if(keyevent.getKeyCode() == keys[2])
             {
                 dirKeysDown ^= 4;
                 currentDirKeyDown ^= 4;
-                keyQueue.removeItems((byte)4);
+                keyQueue.verwijderItems((byte)4);
             } else
             if(keyevent.getKeyCode() == keys[3])
             {
                 dirKeysDown ^= 8;
                 currentDirKeyDown ^= 8;
-                keyQueue.removeItems((byte)8);
+                keyQueue.verwijderItems((byte)8);
             }
             if(currentDirKeyDown == 0)
             {
                 boolean flag;
-                for(flag = false; !flag && keyQueue.size() > 0;)
+                for(flag = false; !flag && keyQueue.grootte() > 0;)
                 {
-                    if((keyQueue.getLastItem() & dirKeysDown) > 0)
+                    if((keyQueue.haalLaatsteItemOp() & dirKeysDown) > 0)
                     {
-                        currentDirKeyDown = keyQueue.getLastItem();
+                        currentDirKeyDown = keyQueue.haalLaatsteItemOp();
                         flag = true;
                     } else
                     {
@@ -239,7 +239,7 @@ public class BomberPlayer extends Thread
 
                 if(!flag)
                 {
-                    keyQueue.removeAll();
+                    keyQueue.verwijderAlles();
                     currentDirKeyDown = 0;
                     dirKeysDown = 0;
                     keyPressed = false;

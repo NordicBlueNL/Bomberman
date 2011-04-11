@@ -7,38 +7,38 @@ public class BomberKeyQueue
     {
 
         public byte data;
-        public Node prev;
-        public Node next;
+        public Node vorige;
+        public Node volgende;
 
         public Node(byte byte0)
         {
             data = 0;
-            prev = null;
-            next = null;
+            vorige = null;
+            volgende = null;
             data = byte0;
         }
 
         public Node(Node node)
         {
             data = 0;
-            prev = null;
-            next = null;
+            vorige = null;
+            volgende = null;
             data = node.data;
-            prev = node.prev;
-            next = node.next;
+            vorige = node.vorige;
+            volgende = node.volgende;
         }
     }
 
 
     private Node head;
     private Node tail;
-    private int totalItems;
+    private int totaalItems;
 
     public BomberKeyQueue()
     {
         head = null;
         tail = null;
-        totalItems = 0;
+        totaalItems = 0;
     }
 
     public void push(byte byte0)
@@ -49,11 +49,11 @@ public class BomberKeyQueue
             head = tail = node;
         } else
         {
-            tail.next = node;
-            node.prev = tail;
+            tail.volgende = node;
+            node.vorige = tail;
             tail = node;
         }
-        totalItems++;
+        totaalItems++;
     }
 
     public byte pop()
@@ -62,58 +62,58 @@ public class BomberKeyQueue
         if(tail != null)
         {
             byte0 = tail.data;
-            tail = tail.prev;
+            tail = tail.vorige;
             if(tail != null)
             {
-                tail.next = null;
+                tail.volgende = null;
             } else
             {
                 head = tail;
             }
-            totalItems--;
+            totaalItems--;
         }
         return byte0;
     }
 
-    public void removeItems(byte byte0)
+    public void verwijderItems(byte byte0)
     {
-        for(Node node = head; node != null; node = node.next)
+        for(Node node = head; node != null; node = node.volgende)
         {
             if(node.data == byte0)
             {
-                if(node.prev != null)
+                if(node.vorige != null)
                 {
-                    node.prev.next = node.next;
+                    node.vorige.volgende = node.volgende;
                 }
-                if(node.next != null)
+                if(node.volgende != null)
                 {
-                    node.next.prev = node.prev;
+                    node.volgende.vorige = node.vorige;
                 }
                 if(node == head)
                 {
-                    head = node.next;
+                    head = node.volgende;
                 }
                 if(node == tail)
                 {
-                    tail = node.prev;
+                    tail = node.vorige;
                 }
-                totalItems--;
+                totaalItems--;
             }
         }
 
     }
 
-    public void removeAll()
+    public void verwijderAlles()
     {
         head = tail = null;
     }
 
-    public int size()
+    public int grootte()
     {
-        return totalItems;
+        return totaalItems;
     }
 
-    public byte getLastItem()
+    public byte haalLaatsteItemOp()
     {
         byte byte0 = 0;
         if(tail != null)
@@ -126,7 +126,7 @@ public class BomberKeyQueue
     public boolean contains(byte byte0)
     {
         boolean flag = false;
-        for(Node node = head; node != null; node = node.next)
+        for(Node node = head; node != null; node = node.volgende)
         {
             if(node.data != byte0)
             {

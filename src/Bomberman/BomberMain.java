@@ -91,8 +91,8 @@ public class BomberMain extends JFrame
         show();
         if(Main.J2)
         {
-            BomberBGM.unmute();
-            BomberBGM.change("Lets Battle Begin");
+            BomberBGM.dempen();
+            BomberBGM.verander("Let the battle begin");
         }
     }
 
