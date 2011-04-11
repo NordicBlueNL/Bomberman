@@ -22,7 +22,7 @@ public class BomberSndEffect extends Thread
             }
             catch(Exception exception) { }
             soundplayer.open();
-            soundplayer.change(0, false);
+            soundplayer.aanpassen(0, false);
         }
     }
 }

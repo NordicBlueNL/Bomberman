@@ -16,44 +16,44 @@ public class SoundPlayer extends JPanel
     implements Runnable, LineListener, MetaEventListener, ActionListener
 {
 
-    public Vector sounds;
+    public Vector Muziek;
     private Thread thread;
     private Sequencer sequencer;
     private boolean midiEOM;
     private boolean audioEOM;
     private Synthesizer synthesizer;
-    private MidiChannel channels[];
-    private Object currentSound;
-    private String currentName;
+    private MidiChannel kanalen[];
+    private Object huidigemuziek;
+    private String huidigenaam;
     private int num;
     private boolean bump;
-    private boolean paused;
+    private boolean gepauzeerd;
     public boolean loop;
     private int volumn;
-    JButton startB;
-    JButton pauseB;
-    JButton prevB;
-    JButton nextB;
+    JButton startknop;
+    JButton pauseknop;
+    JButton vorigeknop;
+    JButton volgendeknop;
 
     public SoundPlayer(String s)
     {
-        sounds = new Vector();
+        Muziek = new Vector();
         num = -1;
-        paused = false;
+        gepauzeerd = false;
         loop = true;
         volumn = 100;
         if(s != null)
         {
-            loadFile(s);
+            laadbestand(s);
         }
         JPanel jpanel = new JPanel(new GridLayout(4, 1));
-        startB = addButton("Start", jpanel, sounds.size() != 0);
-        pauseB = addButton("Pause", jpanel, false);
-        prevB = addButton("<<", jpanel, false);
-        nextB = addButton(">>", jpanel, false);
+        startknop = voegknoptoe("Start", jpanel, Muziek.size() != 0);
+        pauseknop = voegknoptoe("Pause", jpanel, false);
+        vorigeknop = voegknoptoe("<<", jpanel, false);
+        volgendeknop = voegknoptoe(">>", jpanel, false);
     }
 
-    private JButton addButton(String s, JPanel jpanel, boolean flag)
+    private JButton voegknoptoe(String s, JPanel jpanel, boolean flag)
     {
         JButton jbutton = new JButton(s);
         jbutton.addActionListener(this);
@@ -73,7 +73,7 @@ public class SoundPlayer extends JPanel
             if(sequencer instanceof Synthesizer)
             {
                 synthesizer = (Synthesizer)sequencer;
-                channels = synthesizer.getChannels();
+                kanalen = synthesizer.getChannels();
             }
         }
         catch(Exception exception)
@@ -83,11 +83,11 @@ public class SoundPlayer extends JPanel
         sequencer.addMetaEventListener(this);
     }
 
-    public void close()
+    public void sluit()
     {
-        if(thread != null && startB != null)
+        if(thread != null && startknop != null)
         {
-            startB.doClick(0);
+            startknop.doClick(0);
         }
         if(sequencer != null)
         {
@@ -95,7 +95,7 @@ public class SoundPlayer extends JPanel
         }
     }
 
-    public void loadFile(String s)
+    public void laadbestand(String s)
     {
         try
         {
@@ -108,45 +108,45 @@ public class SoundPlayer extends JPanel
                     File file1 = new File(file.getAbsolutePath(), as[i]);
                     if(file1.isDirectory())
                     {
-                        loadFile(file1.getAbsolutePath());
+                        laadbestand(file1.getAbsolutePath());
                     } else
                     {
-                        addSound(file1);
+                        geluidtoevoegen(file1);
                     }
                 }
 
             } else
             if(file != null && file.exists())
             {
-                addSound(file);
+                geluidtoevoegen(file);
             }
         }
         catch(Exception exception) { }
     }
 
-    private void addSound(File file)
+    private void geluidtoevoegen(File file)
     {
         String s = file.getName();
         if(s.endsWith(".au") || s.endsWith(".rmf") || s.endsWith(".mid") || s.endsWith(".wav") || s.endsWith(".aif") || s.endsWith(".aiff"))
         {
-            sounds.add(file);
+            Muziek.add(file);
         }
     }
 
-    public boolean loadSound(Object obj)
+    public boolean laadmuziek(Object obj)
     {
         if(obj instanceof URL)
         {
-            currentName = ((URL)obj).getFile();
+            huidigenaam = ((URL)obj).getFile();
             try
             {
-                currentSound = AudioSystem.getAudioInputStream((URL)obj);
+                huidigemuziek = AudioSystem.getAudioInputStream((URL)obj);
             }
             catch(Exception exception)
             {
                 try
                 {
-                    currentSound = MidiSystem.getSequence((URL)obj);
+                    huidigemuziek = MidiSystem.getSequence((URL)obj);
                 }
                 catch(InvalidMidiDataException invalidmididataexception1) { }
                 catch(Exception exception5) { }
@@ -154,31 +154,31 @@ public class SoundPlayer extends JPanel
         } else
         if(obj instanceof File)
         {
-            currentName = ((File)obj).getName();
+            huidigenaam = ((File)obj).getName();
             try
             {
-                currentSound = AudioSystem.getAudioInputStream((File)obj);
+                huidigemuziek = AudioSystem.getAudioInputStream((File)obj);
             }
             catch(Exception exception1)
             {
                 try
                 {
                     FileInputStream fileinputstream = new FileInputStream((File)obj);
-                    currentSound = new BufferedInputStream(fileinputstream, 1024);
+                    huidigemuziek = new BufferedInputStream(fileinputstream, 1024);
                 }
                 catch(Exception exception3) { }
             }
         }
         if(sequencer == null)
         {
-            currentSound = null;
+            huidigemuziek = null;
             return false;
         }
-        if(currentSound instanceof AudioInputStream)
+        if(huidigemuziek instanceof AudioInputStream)
         {
             try
             {
-                AudioInputStream audioinputstream = (AudioInputStream)currentSound;
+                AudioInputStream audioinputstream = (AudioInputStream)huidigemuziek;
                 AudioFormat audioformat = audioinputstream.getFormat();
                 if(audioformat.getEncoding() == javax.sound.sampled.AudioFormat.Encoding.ULAW || audioformat.getEncoding() == javax.sound.sampled.AudioFormat.Encoding.ALAW)
                 {
@@ -190,21 +190,21 @@ public class SoundPlayer extends JPanel
                 Clip clip = (Clip)AudioSystem.getLine(info);
                 clip.addLineListener(this);
                 clip.open(audioinputstream);
-                currentSound = clip;
+                huidigemuziek = clip;
             }
             catch(Exception exception2) { }
         } else
-        if((currentSound instanceof Sequence) || (currentSound instanceof BufferedInputStream))
+        if((huidigemuziek instanceof Sequence) || (huidigemuziek instanceof BufferedInputStream))
         {
             try
             {
                 sequencer.open();
-                if(currentSound instanceof Sequence)
+                if(huidigemuziek instanceof Sequence)
                 {
-                    sequencer.setSequence((Sequence)currentSound);
+                    sequencer.setSequence((Sequence)huidigemuziek);
                 } else
                 {
-                    sequencer.setSequence((BufferedInputStream)currentSound);
+                    sequencer.setSequence((BufferedInputStream)huidigemuziek);
                 }
             }
             catch(InvalidMidiDataException invalidmididataexception)
@@ -219,12 +219,12 @@ public class SoundPlayer extends JPanel
         return true;
     }
 
-    public void playSound()
+    public void speelMuziek()
     {
         setGain(volumn);
         setPan();
         midiEOM = audioEOM = bump = false;
-        if((currentSound instanceof Sequence) || (currentSound instanceof BufferedInputStream) && thread != null)
+        if((huidigemuziek instanceof Sequence) || (huidigemuziek instanceof BufferedInputStream) && thread != null)
         {
             sequencer.start();
             while(!midiEOM && thread != null && !bump) 
@@ -241,9 +241,9 @@ public class SoundPlayer extends JPanel
             sequencer.stop();
             sequencer.close();
         } else
-        if((currentSound instanceof Clip) && thread != null)
+        if((huidigemuziek instanceof Clip) && thread != null)
         {
-            Clip clip = (Clip)currentSound;
+            Clip clip = (Clip)huidigemuziek;
             clip.start();
             try
             {
@@ -251,7 +251,7 @@ public class SoundPlayer extends JPanel
                 Thread.sleep(99L);
             }
             catch(Exception exception1) { }
-            while((paused || clip.isActive()) && thread != null && !bump) 
+            while((gepauzeerd || clip.isActive()) && thread != null && !bump) 
             {
                 try
                 {
@@ -265,18 +265,18 @@ public class SoundPlayer extends JPanel
             clip.stop();
             clip.close();
         }
-        currentSound = null;
+        huidigemuziek = null;
     }
 
     public void update(LineEvent lineevent)
     {
-        if(lineevent.getType() == javax.sound.sampled.LineEvent.Type.STOP && !paused)
+        if(lineevent.getType() == javax.sound.sampled.LineEvent.Type.STOP && !gepauzeerd)
         {
             audioEOM = true;
         }
     }
 
-    public void meta(MetaMessage metamessage)
+    public void meta (MetaMessage metamessage)
     {
         if(metamessage.getType() == 47)
         {
@@ -309,38 +309,38 @@ public class SoundPlayer extends JPanel
     {
         do
         {
-            if(loadSound(sounds.elementAt(num)))
+            if(laadmuziek(Muziek.elementAt(num)))
             {
-                playSound();
+                speelMuziek();
             }
         } while(loop && thread != null);
         if(thread != null)
         {
-            startB.doClick();
+            startknop.doClick();
         }
         thread = null;
-        currentName = null;
-        currentSound = null;
+        huidigenaam = null;
+        huidigemuziek = null;
     }
 
     public void setPan()
     {
         int i = 0;
-        if(currentSound instanceof Clip)
+        if(huidigemuziek instanceof Clip)
         {
             try
             {
-                Clip clip = (Clip)currentSound;
+                Clip clip = (Clip)huidigemuziek;
                 FloatControl floatcontrol = (FloatControl)clip.getControl(javax.sound.sampled.FloatControl.Type.PAN);
                 floatcontrol.setValue((float)i / 100F);
             }
             catch(Exception exception) { }
         } else
-        if((currentSound instanceof Sequence) || (currentSound instanceof BufferedInputStream))
+        if((huidigemuziek instanceof Sequence) || (huidigemuziek instanceof BufferedInputStream))
         {
-            for(int j = 0; j < channels.length; j++)
+            for(int j = 0; j < kanalen.length; j++)
             {
-                channels[j].controlChange(10, (int)((((double)i + 100D) / 200D) * 127D));
+                kanalen[j].controlChange(10, (int)((((double)i + 100D) / 200D) * 127D));
             }
 
         }
@@ -348,84 +348,84 @@ public class SoundPlayer extends JPanel
 
     public void setGain(double d)
     {
-        if(currentSound instanceof Clip)
+        if(huidigemuziek instanceof Clip)
         {
             try
             {
-                Clip clip = (Clip)currentSound;
+                Clip clip = (Clip)huidigemuziek;
                 FloatControl floatcontrol = (FloatControl)clip.getControl(javax.sound.sampled.FloatControl.Type.MASTER_GAIN);
                 float f = (float)((Math.log(d != 0.0D ? d : 0.0001D) / Math.log(10D)) * 20D);
                 floatcontrol.setValue(f);
             }
             catch(Exception exception) { }
         } else
-        if((currentSound instanceof Sequence) || (currentSound instanceof BufferedInputStream))
+        if((huidigemuziek instanceof Sequence) || (huidigemuziek instanceof BufferedInputStream))
         {
-            for(int i = 0; i < channels.length; i++)
+            for(int i = 0; i < kanalen.length; i++)
             {
-                channels[i].controlChange(7, (int)(d * 127D));
+                kanalen[i].controlChange(7, (int)(d * 127D));
             }
 
         }
     }
 
-    public void mute()
+    public void dempen()
     {
         volumn = 5;
         setGain(volumn);
         bump = true;
     }
 
-    public void unmute()
+    public void dempenstoppen()
     {
         volumn = 100;
         setGain(volumn);
         bump = true;
     }
 
-    public void change(int i, boolean flag)
+    public void aanpassen(int i, boolean flag)
     {
-        paused = false;
-        pauseB.setText("Pause");
+        gepauzeerd = false;
+        pauseknop.setText("Pause");
         loop = flag;
         num = i;
         bump = true;
-        if(startB.getText().equals("Start"))
+        if(startknop.getText().equals("Start"))
         {
-            startB.doClick();
+            startknop.doClick();
         }
     }
 
     public void controlPlay()
     {
-        startB.doClick();
+        startknop.doClick();
     }
 
     public void controlStop()
     {
-        startB.doClick();
+        startknop.doClick();
     }
 
-    public void controlBack()
+    public void controlvorige()
     {
-        prevB.doClick();
+        vorigeknop.doClick();
     }
 
-    public void controlNext()
+    public void controlvolgende()
     {
-        nextB.doClick();
+        volgendeknop.doClick();
     }
 
     public void setComponentsEnabled(boolean flag)
     {
-        pauseB.setEnabled(flag);
-        prevB.setEnabled(flag);
-        nextB.setEnabled(flag);
+        pauseknop.setEnabled(flag);
+        vorigeknop.setEnabled(flag);
+        volgendeknop.setEnabled(flag);
     }
 
-    public boolean isPlaying()
+    public boolean afspelen()
     {
-        return !startB.getText().equals("Start");
+        return !startknop.getText().equals("Start");
     }
 
     public void actionPerformed(ActionEvent actionevent)
@@ -433,7 +433,7 @@ public class SoundPlayer extends JPanel
         JButton jbutton = (JButton)actionevent.getSource();
         if(jbutton.getText().equals("Start"))
         {
-            paused = false;
+            gepauzeerd = false;
             num = num != -1 ? num : 0;
             start();
             jbutton.setText("Stop");
@@ -441,50 +441,50 @@ public class SoundPlayer extends JPanel
         } else
         if(jbutton.getText().equals("Stop"))
         {
-            paused = false;
+            gepauzeerd = false;
             stop();
             jbutton.setText("Start");
-            pauseB.setText("Pause");
+            pauseknop.setText("Pause");
             setComponentsEnabled(false);
         } else
         if(jbutton.getText().equals("Pause"))
         {
-            paused = true;
-            if(currentSound instanceof Clip)
+            gepauzeerd = true;
+            if(huidigemuziek instanceof Clip)
             {
-                ((Clip)currentSound).stop();
+                ((Clip)huidigemuziek).stop();
             } else
-            if((currentSound instanceof Sequence) || (currentSound instanceof BufferedInputStream))
+            if((huidigemuziek instanceof Sequence) || (huidigemuziek instanceof BufferedInputStream))
             {
                 sequencer.stop();
             }
-            pauseB.setText("Resume");
+            pauseknop.setText("Resume");
         } else
         if(jbutton.getText().equals("Resume"))
         {
-            paused = false;
-            if(currentSound instanceof Clip)
+            gepauzeerd = false;
+            if(huidigemuziek instanceof Clip)
             {
-                ((Clip)currentSound).start();
+                ((Clip)huidigemuziek).start();
             } else
-            if((currentSound instanceof Sequence) || (currentSound instanceof BufferedInputStream))
+            if((huidigemuziek instanceof Sequence) || (huidigemuziek instanceof BufferedInputStream))
             {
                 sequencer.start();
             }
-            pauseB.setText("Pause");
+            pauseknop.setText("Pause");
         } else
         if(jbutton.getText().equals("<<"))
         {
-            paused = false;
-            pauseB.setText("Pause");
-            num = num - 1 >= 0 ? num - 2 : sounds.size() - 1;
+            gepauzeerd = false;
+            pauseknop.setText("Pause");
+            num = num - 1 >= 0 ? num - 2 : Muziek.size() - 1;
             bump = true;
         } else
         if(jbutton.getText().equals(">>"))
         {
-            paused = false;
-            pauseB.setText("Pause");
-            num = num + 1 != sounds.size() ? num : -1;
+            gepauzeerd = false;
+            pauseknop.setText("Pause");
+            num = num + 1 != Muziek.size() ? num : -1;
             bump = true;
         }
     }

@@ -22,11 +22,11 @@ public class BomberBGM
         if(Main.J2)
         {
             int i;
-            for(i = 0; i < ((SoundPlayer)mspeler).sounds.size() && ((SoundPlayer)mspeler).sounds.elementAt(i).toString().indexOf(s) < 0; i++) { }
-            if(i != laatstGeselecteerd && i < ((SoundPlayer)mspeler).sounds.size())
+            for(i = 0; i < ((SoundPlayer)mspeler).Muziek.size() && ((SoundPlayer)mspeler).Muziek.elementAt(i).toString().indexOf(s) < 0; i++) { }
+            if(i != laatstGeselecteerd && i < ((SoundPlayer)mspeler).Muziek.size())
             {
                 laatstGeselecteerd = i;
-                ((SoundPlayer)mspeler).change(laatstGeselecteerd, true);
+                ((SoundPlayer)mspeler).aanpassen(laatstGeselecteerd, true);
             }
         }
     }
@@ -44,7 +44,7 @@ public class BomberBGM
     {
         if(Main.J2)
         {
-            ((SoundPlayer)mspeler).mute();
+            ((SoundPlayer)mspeler).dempen();
            
         }
     }
@@ -53,7 +53,7 @@ public class BomberBGM
     {
         if(Main.J2)
         {
-            ((SoundPlayer)mspeler).unmute();
+            ((SoundPlayer)mspeler).dempenstoppen();
         }
     }
 //Algemeen einde om  o.a. de muziek te laden
