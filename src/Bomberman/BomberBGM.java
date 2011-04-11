@@ -62,7 +62,7 @@ public class BomberBGM
         {
             try
             {
-                mspeler = new SoundPlayer((new File(BomberMain.RP + "src/Sounds/BomberBGM/")).getCanonicalPath());
+                mspeler = new SoundPlayer((new File(BomberMain.RP + "src/Sounds/BomberBGM/Battle.mid")).getCanonicalPath());
             }
             catch(Exception exception)
             {

@@ -39,7 +39,7 @@ public class SoundPlayer extends JPanel
         num = -1;
         gepauzeerd = false;
         loop = true;
-        volumn = 100;
+        volumn = 10;
         if(s != null)
         {
             laadbestand(s);
@@ -369,14 +369,14 @@ public class SoundPlayer extends JPanel
 
     public void dempen()
     {
-        volumn = 5;
+        volumn = 9;
         setGain(volumn);
         bump = true;
     }
 
     public void dempenstoppen()
     {
-        volumn = 100;
+        volumn = 10;
         setGain(volumn);
         bump = true;
     }
