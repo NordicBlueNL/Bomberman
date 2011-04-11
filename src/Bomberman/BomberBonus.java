@@ -59,7 +59,7 @@ public class BomberBonus extends Thread
 //Sounds voor het vuur/etc als een bom ontploft
     public void giveToPlayer(int i)
     {
-        BomberMain.sndEffectSpeler.playSound("Bonus");
+        BomberMain.sndEffectSpeler.speelmuziek("Bonus");
         if(type == VUUR)
         {
             BomberSpel.spelers[i - 1].fireLength++;

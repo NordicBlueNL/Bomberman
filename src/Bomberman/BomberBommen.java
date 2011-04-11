@@ -66,7 +66,7 @@ public class BomberBommen extends Thread
         map.bombGrid[x >> 4][y >> 4] = null;
         BomberSpel.spelers[eigenaar].bombGrid[x >> 4][y >> 4] = false;
         map.removeBomb(x, y);
-        BomberMain.sndEffectSpeler.playSound("Explosion");
+        BomberMain.sndEffectSpeler.speelmuziek("Explosion");
         map.createFire(x, y, eigenaar, 0);
     }
 

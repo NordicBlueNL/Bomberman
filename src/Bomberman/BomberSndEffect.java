@@ -11,7 +11,7 @@ public class BomberSndEffect extends Thread
         start();
     }
 
-    public void playSound(String s)
+    public void speelmuziek(String s)
     {
         if(Main.J2)
         {

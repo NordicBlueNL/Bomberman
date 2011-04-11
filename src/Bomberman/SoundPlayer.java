@@ -479,7 +479,7 @@ public class SoundPlayer extends JPanel
             pauseknop.setText("Pause");
             num = num - 1 >= 0 ? num - 2 : Muziek.size() - 1;
             bump = true;
-        } else
+        } else 
         if(jbutton.getText().equals(">>"))
         {
             gepauzeerd = false;

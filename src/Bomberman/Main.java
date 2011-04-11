@@ -7,7 +7,7 @@ public class Main
 {
 
     public static BomberMain bomberMain = null;
-    public static final String RP = "./";
+    public static final String plaatjepad = "./";
     public static boolean J2 = false;
 
     public Main()
