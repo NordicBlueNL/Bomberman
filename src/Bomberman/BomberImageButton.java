@@ -8,22 +8,22 @@ import javax.swing.JPanel;
 public class BomberImageButton
 {
 
-    private JPanel panel;
+    private JPanel paneel;
     private int x;
     private int y;
     private int ID;
     private int w;
     private int h;
     private Rectangle rect;
-    private Image images[];
-    private int state;
+    private Image plaatjes[];
+    private int staat;
     private static Object hints = null;
 //BomberImageButton laat de buttonsplaatjes zien. 
     public BomberImageButton(JPanel jpanel, Image aimage[])
     {
-        state = 0;
-        panel = jpanel;
-        images = aimage;
+        staat = 0;
+        paneel = jpanel;
+        plaatjes = aimage;
         w = aimage[0].getWidth(jpanel);
         h = aimage[0].getHeight(jpanel);
     }
@@ -45,13 +45,13 @@ public class BomberImageButton
     {
         if(flag)
         {
-            state = 1;
+            staat = 1;
         } else
         {
-            state = 0;
+            staat = 0;
         }
-        panel.repaint();
-        panel.paintImmediately(x, y, w / 4, h / 4);
+        paneel.repaint();
+        paneel.paintImmediately(x, y, w / 4, h / 4);
     }
 //Painten van de images
     public void paint(Graphics g)
@@ -62,7 +62,7 @@ public class BomberImageButton
         } else
         {
             Graphics g1 = g;
-            g1.drawImage(images[state], x, y, w / 4, h / 4, null);
+            g1.drawImage(plaatjes[staat], x, y, w / 4, h / 4, null);
         }
     }
 
@@ -70,7 +70,7 @@ public class BomberImageButton
     {
         Graphics2D graphics2d = (Graphics2D)g;
         graphics2d.setRenderingHints((RenderingHints)hints);
-        graphics2d.drawImage(images[state], x, y, w / 4, h / 4, null);
+        graphics2d.drawImage(plaatjes[staat], x, y, w / 4, h / 4, null);
     }
 //Houd de keys in stand op elke soort menu
     static 
