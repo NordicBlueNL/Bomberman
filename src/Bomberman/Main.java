@@ -2,7 +2,7 @@ package Bomberman;
 
 import javax.swing.UIManager;
 
-//Main van Bomberman met veel javaclasses.  
+//Main van Bomberman met veel javaclasses.  Deze kijkt of het Systeem dit kan openen, verder nog openen van BomberMain 
 public class Main
 {
 
@@ -12,6 +12,7 @@ public class Main
 
     public Main()
     {
+    	
     }
 
     public static void startBomberman()

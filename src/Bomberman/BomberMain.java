@@ -94,7 +94,7 @@ public class BomberMain extends JFrame
         if(Main.J2)
         {
             BomberBGM.dempen();
-            BomberBGM.verander("Let the battle begin");
+            BomberBGM.verander("Battle");
         }
     }
 

@@ -122,10 +122,10 @@ public class BomberConfigDialog extends JDialog
         getContentPane().add(jpanel, "Center");
         JPanel jpanel2 = new JPanel(new FlowLayout(1));
         jpanel2.setBorder(BorderFactory.createEtchedBorder());
-        JButton jbutton = new JButton("Save");
+        JButton jbutton = new JButton("Opslaan");
         jbutton.addActionListener(this);
         jpanel2.add(jbutton);
-        JButton jbutton1 = new JButton("Close");
+        JButton jbutton1 = new JButton("Sluiten");
         jbutton1.addActionListener(this);
         jpanel2.add(jbutton1);
         getContentPane().add(jpanel2, "South");
@@ -164,7 +164,7 @@ public class BomberConfigDialog extends JDialog
                 break;
 
             case 4: // '\004'
-                buttons[i][j].setText("BOM");
+                buttons[i][j].setText("Bom Plaatsen");
                 break;
             }
             buttons[i][j].addActionListener(this);
@@ -183,7 +183,7 @@ public class BomberConfigDialog extends JDialog
 //ActionEvent om gelijk te krijgen wat je wilt. beschikking van de gegevens die je wilt. 
     public void actionPerformed(ActionEvent actionevent)
     {
-        if(actionevent.getActionCommand().equals("Save"))
+        if(actionevent.getActionCommand().equals("Opslaan"))
         {
             for(int i = 0; i < 4; i++)
             {
@@ -197,7 +197,7 @@ public class BomberConfigDialog extends JDialog
             BomberKeyConfig.schrijfBestand();
             dispose();
         } else
-        if(actionevent.getActionCommand().equals("Close"))
+        if(actionevent.getActionCommand().equals("Sluiten"))
         {
             dispose();
         } else

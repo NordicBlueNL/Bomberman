@@ -20,7 +20,7 @@ public class SoundPlayer extends JPanel
     private boolean midiEOM;
     private boolean audioEOM;
     private Synthesizer synthesizer;
-    private MidiChannel kanalen[];
+    private MidiChannel channels[];
     private Object huidigemuziek;
     private String huidigenaam;
     private int num;
@@ -71,7 +71,7 @@ public class SoundPlayer extends JPanel
             if(sequencer instanceof Synthesizer)
             {
                 synthesizer = (Synthesizer)sequencer;
-                kanalen = synthesizer.getChannels();
+                channels = synthesizer.getChannels();
             }
         }
         catch(Exception exception)
@@ -336,9 +336,9 @@ public class SoundPlayer extends JPanel
         } else
         if((huidigemuziek instanceof Sequence) || (huidigemuziek instanceof BufferedInputStream))
         {
-            for(int j = 0; j < kanalen.length; j++)
+            for(int j = 0; j < channels.length; j++)
             {
-                kanalen[j].controlChange(10, (int)((((double)i + 100D) / 200D) * 127D));
+                channels[j].controlChange(10, (int)((((double)i + 100D) / 200D) * 127D));
             }
 
         }
@@ -359,9 +359,9 @@ public class SoundPlayer extends JPanel
         } else
         if((huidigemuziek instanceof Sequence) || (huidigemuziek instanceof BufferedInputStream))
         {
-            for(int i = 0; i < kanalen.length; i++)
+            for(int i = 0; i < channels.length; i++)
             {
-                kanalen[i].controlChange(7, (int)(d * 127D));
+                channels[i].controlChange(7, (int)(d * 127D));
             }
 
         }
