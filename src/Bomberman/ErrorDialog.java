@@ -10,7 +10,8 @@ import javax.swing.text.JTextComponent;
 public class ErrorDialog
 {
 
-    public ErrorDialog(Exception exception)
+    @SuppressWarnings("deprecation")
+	public ErrorDialog(Exception exception)
     {
         CharArrayWriter chararraywriter = new CharArrayWriter();
         exception.printStackTrace(new PrintWriter(chararraywriter, true));
@@ -28,7 +29,8 @@ public class ErrorDialog
         System.exit(-1);
     }
 
-    public ErrorDialog(Exception exception, boolean flag)
+    @SuppressWarnings({ "deprecation", "unused" })
+	public ErrorDialog(Exception exception, boolean flag)
     {
         CharArrayWriter chararraywriter = new CharArrayWriter();
         exception.printStackTrace(new PrintWriter(chararraywriter, true));

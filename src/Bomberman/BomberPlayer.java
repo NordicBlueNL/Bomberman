@@ -269,7 +269,7 @@ public class BomberPlayer extends Thread
             moving = true;
             isExploding = true;
             keyPressed = false;
-            BomberMain.sndEffectSpeler.playSound("Die");
+            BomberMain.sndEffectSpeler.speelmuziek("Die");
             interrupt();
         }
     }
