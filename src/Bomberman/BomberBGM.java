@@ -6,7 +6,7 @@ import java.util.Vector;
 //Bomberman BackGroundManager 
 public class BomberBGM
 {
-
+   
     private static Object mspeler;
     private static int laatstGeselecteerd = -1;
 
@@ -44,7 +44,7 @@ public class BomberBGM
     {
         if(Main.J2)
         {
-            ((SoundPlayer)mspeler).mute();
+            ((SoundPlayer)mspeler).dempen();
         }
     }
     //Muziek weer luisteren
@@ -52,7 +52,7 @@ public class BomberBGM
     {
         if(Main.J2)
         {
-            ((SoundPlayer)mspeler).unmute();
+            ((SoundPlayer)mspeler).aanzetten();
         }
     }
 //Algemeen einde om  o.a. de muziek te laden
