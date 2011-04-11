@@ -44,7 +44,8 @@ public class BomberBGM
     {
         if(Main.J2)
         {
-            ((SoundPlayer)mspeler).dempen();
+            ((SoundPlayer)mspeler).mute();
+           
         }
     }
     //Muziek weer luisteren
@@ -52,7 +53,7 @@ public class BomberBGM
     {
         if(Main.J2)
         {
-            ((SoundPlayer)mspeler).aanzetten();
+            ((SoundPlayer)mspeler).unmute();
         }
     }
 //Algemeen einde om  o.a. de muziek te laden
