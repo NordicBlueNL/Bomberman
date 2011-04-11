@@ -183,7 +183,7 @@ public class BomberConfigDialog extends JDialog
 //ActionEvent om gelijk te krijgen wat je wilt. beschikking van de gegevens die je wilt. 
     public void actionPerformed(ActionEvent actionevent)
     {
-        if(actionevent.getActionCommand().equals("Save Toetscombinatie"))
+        if(actionevent.getActionCommand().equals("Save"))
         {
             for(int i = 0; i < 4; i++)
             {
