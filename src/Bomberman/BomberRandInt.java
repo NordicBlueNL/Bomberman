@@ -6,7 +6,6 @@ public class BomberRandInt
 
     private int low;
     private int high;
-    private static final int BUFFER_SIZE = 101;
     private static double buffer[];
 
     public BomberRandInt(int i, int j)

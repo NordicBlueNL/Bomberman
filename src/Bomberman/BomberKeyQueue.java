@@ -17,16 +17,6 @@ public class BomberKeyQueue
             volgende = null;
             data = byte0;
         }
-
-        public Node(Node node)
-        {
-            data = 0;
-            vorige = null;
-            volgende = null;
-            data = node.data;
-            vorige = node.vorige;
-            volgende = node.volgende;
-        }
     }
 
 

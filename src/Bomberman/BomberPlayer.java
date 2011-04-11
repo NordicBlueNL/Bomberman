@@ -3,7 +3,6 @@ package Bomberman;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import javax.swing.JComponent;
 
 public class BomberPlayer extends Thread
 {
@@ -15,8 +14,7 @@ public class BomberPlayer extends Thread
     private boolean bombKeyDown;
     private byte dirKeysDown;
     private byte currentDirKeyDown;
-    private final int width = 16;
-    private final int height = 22;
+
     private boolean isExploding;
     private boolean isDead;
     private boolean keyPressed;
@@ -32,17 +30,6 @@ public class BomberPlayer extends Thread
     private boolean moving;
     private int frame;
     private boolean clear;
-    private static final byte BUP = 1;
-    private static final byte BDOWN = 2;
-    private static final byte BLEFT = 4;
-    private static final byte BRIGHT = 8;
-    private static final byte BBOMB = 16;
-    private static final int UP = 0;
-    private static final int DOWN = 1;
-    private static final int LEFT = 2;
-    private static final int RIGHT = 3;
-    private static final int BOMB = 4;
-    private static final int EXPLODING = 4;
     private static Image sprites[][][];
     private static Object hints = null;
 
@@ -311,7 +298,6 @@ public class BomberPlayer extends Thread
                 flag5 = keyPressed;
                 frame = (frame + 1) % 5;
                 moving = true;
-                boolean flag = false;
                 if(dirKeysDown > 0)
                 {
                     if((currentDirKeyDown & 4) > 0)
@@ -636,7 +622,6 @@ public class BomberPlayer extends Thread
             0, 1, 2, 3, 4
         };
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        String s = new String();
         //bombermans images 
         try
         {

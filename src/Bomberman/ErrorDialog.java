@@ -1,10 +1,8 @@
 package Bomberman;
 
-import java.awt.Dialog;
 import java.io.CharArrayWriter;
 import java.io.PrintWriter;
 import javax.swing.*;
-import javax.swing.text.JTextComponent;
 
 //Errordialog als er een fout in het spel optreed. 
 public class ErrorDialog
@@ -25,11 +23,10 @@ public class ErrorDialog
         javax.swing.JDialog jdialog = joptionpane.createDialog(null, "Exception Caught");
         jdialog.setResizable(false);
         jdialog.show();
-        Object obj = joptionpane.getValue();
         System.exit(-1);
     }
 
-    @SuppressWarnings({ "deprecation", "unused" })
+
 	public ErrorDialog(Exception exception, boolean flag)
     {
         CharArrayWriter chararraywriter = new CharArrayWriter();
@@ -44,7 +41,6 @@ public class ErrorDialog
         javax.swing.JDialog jdialog = joptionpane.createDialog(null, "Exception Caught");
         jdialog.setResizable(false);
         jdialog.show();
-        Object obj = joptionpane.getValue();
         if(flag)
         {
             System.exit(-1);

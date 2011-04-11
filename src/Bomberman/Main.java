@@ -21,16 +21,10 @@ public class Main
 
     public static void main(String args[])
     {
-        boolean flag = false;
-        boolean flag2 = false;
+
         int i = 1;
         for(int j = 0; j < args.length; j++)
         {
-            boolean flag1;
-            if(args[j].equals("Bomberman") || args[j].equals("bomberman"))
-            {
-                flag1 = true;
-            }
             if(args[j].startsWith("-l"))
             {
                 if(args[j].substring(2).equals("System"))

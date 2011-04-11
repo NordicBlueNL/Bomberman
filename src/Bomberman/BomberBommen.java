@@ -1,7 +1,6 @@
 package Bomberman;
 
 import java.awt.*;
-import javax.swing.JComponent;
 
 //BomberBomb, deze heeft een Thread. 
 public class BomberBommen extends Thread

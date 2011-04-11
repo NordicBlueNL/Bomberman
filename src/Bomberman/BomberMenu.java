@@ -17,11 +17,6 @@ public class BomberMenu extends JPanel
     private static Image buttonImagesDown[];
     private static Image buttonImagesUp[];
     private static Object hints = null;
-    private static final int P2 = 0;
-    private static final int P3 = 1;
-    private static final int P4 = 2;
-    private static final int CONTROL_SETUP = 3;
-    private static final int EXIT = 4;
 
     public BomberMenu(BomberMain bombermain)
     {
@@ -98,7 +93,8 @@ public class BomberMenu extends JPanel
         }
     }
 
-    public void doCommand(int i)
+    @SuppressWarnings("deprecation")
+	public void doCommand(int i)
     {
         switch(i)
         {
@@ -177,7 +173,6 @@ public class BomberMenu extends JPanel
         buttonImagesUp = new Image[5];
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         String s = BomberMain.RP + "src/Images/BomberMenu/";
-        Object obj = null;
         try
         {
             String s1 = s + "Background.jpg"; //achtergrond

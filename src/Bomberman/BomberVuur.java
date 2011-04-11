@@ -1,7 +1,6 @@
 package Bomberman;
 
 import java.awt.*;
-import javax.swing.JComponent;
 
 //BomberFire Thread. Klasse Vuur na de Bom
 public class BomberVuur extends Thread

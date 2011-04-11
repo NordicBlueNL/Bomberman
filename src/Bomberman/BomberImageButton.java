@@ -1,7 +1,6 @@
 package Bomberman;
 
 import java.awt.*;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 //BomberImageButton, de buttonsplaatjes zoals Controlsettings, aantal spelers die spelen en Exit menu. 
@@ -14,7 +13,6 @@ public class BomberImageButton
     private int ID;
     private int w;
     private int h;
-    private Rectangle rect;
     private Image plaatjes[];
     private int staat;
     private static Object hints = null;
@@ -33,7 +31,6 @@ public class BomberImageButton
         x = i;
         y = j;
         ID = k;
-        rect = new Rectangle(x, y - 5, w, h + 10);
     }
 //GetID, Identification
     public int getID()

@@ -215,7 +215,6 @@ public class BomberSpel extends JPanel
             hints = renderinghints;
         }
         String s = BomberMain.RP + "src/Images/BomberEndGame/";
-        Object obj = null;
         plaatjes = new Image[6];
         try
         {

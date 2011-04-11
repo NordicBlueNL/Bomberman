@@ -39,7 +39,7 @@ public class BomberMap extends JPanel
     }
 
 
-    private BomberMain main;
+    //private BomberMain main;
     private boolean gameOver;
     private Color backgroundColor;
     public int rooster[][];
@@ -75,7 +75,6 @@ public class BomberMap extends JPanel
     //Bombermap erft van BomberMain
     public BomberMap(BomberMain bombermain)
     {
-        main = null;
         gameOver = false;
         backgroundColor = null;
         rooster = null;
@@ -84,7 +83,6 @@ public class BomberMap extends JPanel
         bonusRooster = null;
         bombs = null;
         bonuses = null;
-        main = bombermain;
         level = levelRand.draw() % 2;
         MediaTracker mediatracker = new MediaTracker(this);
         //Waar staan de images van de map/vuurstenen die ontploffen kunnen 

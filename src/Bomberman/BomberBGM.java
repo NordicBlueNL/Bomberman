@@ -1,7 +1,6 @@
 package Bomberman;
 
 import java.io.File;
-import java.util.Vector;
 
 //Bomberman BackGroundManager 
 public class BomberBGM

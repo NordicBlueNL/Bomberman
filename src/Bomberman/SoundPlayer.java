@@ -1,11 +1,9 @@
 package Bomberman;
-import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.URL;
-import java.util.EventObject;
 import java.util.Vector;
 import javax.sound.midi.*;
 import javax.sound.sampled.*;

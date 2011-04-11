@@ -17,7 +17,8 @@ public class BomberMain extends JFrame
     public static final int shiftCount = 4;
     public static final int size = 16;
 
-    public BomberMain()
+    @SuppressWarnings("deprecation")
+	public BomberMain()
     {
         menu = null;
         game = null;
@@ -72,7 +73,8 @@ public class BomberMain extends JFrame
         toFront();
     }
 
-    public void newGame(int i)
+    @SuppressWarnings("deprecation")
+	public void newGame(int i)
     {
         JDialog jdialog = new JDialog(this, "Loading Game...", false);
         jdialog.setDefaultCloseOperation(0);
