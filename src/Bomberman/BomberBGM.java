@@ -14,6 +14,22 @@ public class BomberBGM
     {
     	
     }
+    static //Als je Java2 hebt
+    {
+        if(Main.J2)
+        {
+            try
+            {
+                mspeler = new SoundPlayer((new File(BomberMain.RP + "Sounds/BomberBGM/")).getCanonicalPath());
+                System.out.println("mspeler");
+            }
+            catch(Exception exception)
+            {
+                new ErrorDialog(exception);
+            }
+            ((SoundPlayer)mspeler).open();
+        }
+    }
 
     //Change is voor de muziek(Muziek veranderen)
     public static void verander(String s)
@@ -56,19 +72,5 @@ public class BomberBGM
         }
     }
 //Algemeen einde om  o.a. de muziek te laden
-    static 
-    {
-        if(Main.J2)
-        {
-            try
-            {
-                mspeler = new SoundPlayer((new File(BomberMain.RP + "src/Sounds/BomberBGM/")).getCanonicalPath());
-            }
-            catch(Exception exception)
-            {
-                new ErrorDialog(exception);
-            }
-            ((SoundPlayer)mspeler).open();
-        }
-    }
+
 }

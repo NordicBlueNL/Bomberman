@@ -63,7 +63,7 @@ public class BomberMain extends JFrame
             new ErrorDialog(exception);
         }
         getContentPane().add(menu = new BomberMenu(this));
-        setResizable(false);
+        setResizable(true);//was false (niet groter kunnen maken)
         pack();
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         int i = (dimension.width - getSize().width) / 2;
@@ -94,14 +94,14 @@ public class BomberMain extends JFrame
         if(Main.J2)
         {
             BomberBGM.dempen();
-            BomberBGM.verander("Battle");
+            BomberBGM.verander("Battle.mid");
         }
     }
 
     public static void main(String args[])
     {
         new BomberMain();
-       // BomberMain bombermain = new BomberMain();
+        BomberMain bombermain = new BomberMain();
     }
 
     static 

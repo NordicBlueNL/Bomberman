@@ -64,7 +64,9 @@ public class BomberVuur extends Thread
                 Thread.sleep(65L);
             }
             catch(Exception exception) { }
-        } while(frame <= 7);
+        } 
+        
+        while(frame <= 7);
         map.rooster[x >> 4][y >> 4] = -1;
         map.fireRooster[x >> 4][y >> 4] = false;
         map.paintImmediately(x, y, 16, 16);
@@ -91,7 +93,9 @@ public class BomberVuur extends Thread
     {
         Graphics2D graphics2d = (Graphics2D)g;
         graphics2d.setRenderingHints((RenderingHints)hints);
-        graphics2d.drawImage(plaatjes[type][frame], x, y, 16, 16, null);
+        //was
+        //graphics2d.drawImage(plaatjes[type][frame],x,y,16,16,null)
+        graphics2d.drawImage(plaatjes[type][frame], x, y, 32,32, null);
     }
     //toetshoudbaarheid
     static 

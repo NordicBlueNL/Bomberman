@@ -595,10 +595,12 @@ public class BomberPlayer extends Thread
         {
             if(moving)
             {
-                graphics2d.drawImage(sprites[playerNo - 1][state][frame], x, y - 8, 16, 22, null);
+            	//was graphics2d.drawImage(sprites[playerNo - 1][state][frame], x, y - 8, 16, 22, null);
+                graphics2d.drawImage(sprites[playerNo - 1][state][frame], x, y - 16, 32, 44, null);
             } else
             {
-                graphics2d.drawImage(sprites[playerNo - 1][state][0], x, y - 8, 16, 22, null);
+            	//was graphics2d.drawImage(sprites[playerNo - 1][state][0], x, y - 8, 16, 22, null);
+                graphics2d.drawImage(sprites[playerNo - 1][state][0], x, y - 16, 32, 44, null);
             }
         }
     }

@@ -109,15 +109,19 @@ public class BomberSpel extends JPanel
             paint2D(g);
         } else
         {
+        	
+       int HB = 544; //HB = Hoogte Breedte
+         
             if(gameOver)
             {
-                g1.drawImage(plaatjes[winnaar], 0, -25, 272, 272, this);
+            	//was g1.drawImage(plaatjes[winnaar], 0,-25,272,272,this);
+                g1.drawImage(plaatjes[winnaar], 0, -50, HB, HB, this);
                 if(verstrekenSeconden == 0)
                 {
-                    g1.drawImage(plaatjes[5], 0, 272 - plaatjes[5].getHeight(this) / 2, plaatjes[5].getWidth(this) / 2, plaatjes[5].getHeight(this) / 2, this);
+                    g1.drawImage(plaatjes[5], 0, HB - plaatjes[5].getHeight(this) / 2, plaatjes[5].getWidth(this) / 2, plaatjes[5].getHeight(this) / 2, this);
                 } else
                 {
-                    g1.fillRect(0, 272 - plaatjes[5].getHeight(this) / 2, plaatjes[5].getWidth(this) / 2, plaatjes[5].getHeight(this) / 2);
+                    g1.fillRect(0, HB - plaatjes[5].getHeight(this) / 2, plaatjes[5].getWidth(this) / 2, plaatjes[5].getHeight(this) / 2);
                 }
             }
             if(spelerLinks <= 1 && timer == null)
@@ -140,17 +144,19 @@ public class BomberSpel extends JPanel
 //Paint 2D.de tekeningen Game Over en welke spelers er nog over blijven. 
     public void paint2D(Graphics g)
     {
+    	int HB = 544;
         Graphics2D graphics2d = (Graphics2D)g;
         graphics2d.setRenderingHints((RenderingHints)hints);
         if(gameOver)
         {
-            graphics2d.drawImage(plaatjes[winnaar], 0, -25, 272, 272, this);
+        	//was graphics2d.drawImag(plaatjes[winnaar],0,-25,272,272,this);
+            graphics2d.drawImage(plaatjes[winnaar], 0, -50, HB, HB, this);
             if(verstrekenSeconden == 0)
             {
-                graphics2d.drawImage(plaatjes[5], 0, 272 - plaatjes[5].getHeight(this) / 2, plaatjes[5].getWidth(this) / 2, plaatjes[5].getHeight(this) / 2, this);
+                graphics2d.drawImage(plaatjes[5], 0, HB - plaatjes[5].getHeight(this) / 2, plaatjes[5].getWidth(this) / 2, plaatjes[5].getHeight(this) / 2, this);
             } else
             {
-                graphics2d.fillRect(0, 272 - plaatjes[5].getHeight(this) / 2, plaatjes[5].getWidth(this) / 2, plaatjes[5].getHeight(this) / 2);
+                graphics2d.fillRect(0, HB - plaatjes[5].getHeight(this) / 2, plaatjes[5].getWidth(this) / 2, plaatjes[5].getHeight(this) / 2);
             }
         }
         if(spelerLinks <= 1 && timer == null)
@@ -191,10 +197,13 @@ public class BomberSpel extends JPanel
             timer = new Timer(500, this);
             timer.start();
         }
+        int HB = 544;
+        
         if(gameOver)
         {
             verstrekenSeconden %= 2;
-            paintImmediately(0, 272 - plaatjes[5].getHeight(this) / 2, plaatjes[5].getWidth(this) / 2, plaatjes[5].getHeight(this) / 2);
+            //Hoogte Breedte was 272
+            paintImmediately(0, HB - plaatjes[5].getHeight(this) / 2, plaatjes[5].getWidth(this) / 2, plaatjes[5].getHeight(this) / 2);
         }
     }
 // Houd de keys in stand en laat zien wie er de winnaar is.(dmv een plaatje)
