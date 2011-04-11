@@ -172,7 +172,7 @@ public class BomberGame extends JPanel
         {
             if(Main.J2)
             {
-                BomberBGM.mute();
+                BomberBGM.dempen();
             }
             winner = 4;
             for(int i = 0; i < totalPlayers; i++)

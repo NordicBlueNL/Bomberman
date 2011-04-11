@@ -100,7 +100,7 @@ public class BomberConfigDialog extends JDialog
         {
             for(int j = 0; j < 5; j++)
             {
-                keys[i][j] = BomberKeyConfig.keys[i][j];
+                keys[i][j] = BomberKeyConfig.toetsen[i][j];
             }
 
         }
@@ -189,12 +189,12 @@ public class BomberConfigDialog extends JDialog
             {
                 for(int k = 0; k < 5; k++)
                 {
-                    BomberKeyConfig.keys[i][k] = keys[i][k];
+                    BomberKeyConfig.toetsen[i][k] = keys[i][k];
                 }
 
             }
 
-            BomberKeyConfig.writeFile();
+            BomberKeyConfig.schrijfBestand();
             dispose();
         } else
         if(actionevent.getActionCommand().equals("Close"))
