@@ -25,7 +25,7 @@ implements ActionListener
 	MP3 gamesound = new MP3("./src/Sounds/BomberBGM/gamesound.mp3");
 	MP3 oversound = new MP3("./src/Sounds/BomberBGM/oversound.mp3");
 
-	//BomberGame erft van BomberMain en BomberMap. 
+	//BomberGame erft van BomberMain en BomberMap.
 	public BomberSpel(BomberMain bombermain, BomberMap bombermap, int i)
 	{
 		main = null;
@@ -72,11 +72,13 @@ implements ActionListener
 			for(int i = 0; i < totaalSpelers; i++)
 			{
 				spelers[i].keyPressed(keyevent);
+				oversound.close();
 			}
 
 		} else
 			if(keyevent.getKeyCode() == 10)
 			{
+				oversound.close();
 				timer.stop();
 				timer = null;
 				main.dispose();
@@ -187,29 +189,32 @@ implements ActionListener
 			{
 				if(spelers[i].isDead())
 				{
+					gamesound.close();
 					continue;
 				}
+			
 				winnaar = i;
 				break; 
 			}
-
+			
 			gameOver = true;
 			map.setGameOver();
-			gamesound.close();
-
 			timer.stop();
 			timer = new Timer(500, this);
 			timer.start();
 		}
 
-
 		if(gameOver)
-		{
+		{	
+			//timer overheen gooien?
 			oversound.play();
+			
+			oversound.close();
+			
 			verstrekenSeconden %= 2;
-
 			paintImmediately(0, 272 - plaatjes[5].getHeight(this) / 2, plaatjes[5].getWidth(this) / 2, plaatjes[5].getHeight(this) / 2);
 		}
+	
 			//if( ! gameOver)
 			//  { 
 			//   oversound.close();
