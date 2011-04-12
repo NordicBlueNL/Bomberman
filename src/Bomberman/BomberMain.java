@@ -15,6 +15,7 @@ public class BomberMain extends JFrame
     private BomberSpel game;
     public static BomberSndEffect sndEffectSpeler = null;
     public static final int shiftCount = 4;
+    //was public static final int size = 16;
     public static final int size = 16;
 
     @SuppressWarnings("deprecation")
@@ -78,9 +79,11 @@ public class BomberMain extends JFrame
     {
         JDialog jdialog = new JDialog(this, "Loading Game...", false);
         jdialog.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        jdialog.setSize(new Dimension(200, 0));
-        jdialog.setResizable(true);
-        int j = getLocation().x + (getSize().width ) / 2;//was int J = getLocation().x + (getSize().width - 200) / 2
+        
+          jdialog.setSize(new Dimension(200, 0));
+        jdialog.setResizable(false);
+      //was int J = getLocation().x + (getSize().width - 200) / 2
+        int j = getLocation().x + (getSize().width-200 ) / 2;
         int k = getLocation().y + getSize().height / 2;
         jdialog.setLocation(j, k);
         jdialog.show();

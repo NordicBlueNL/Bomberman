@@ -69,7 +69,8 @@ public class BomberVuur extends Thread
         while(frame <= 7);
         map.rooster[x >> 4][y >> 4] = -1;
         map.fireRooster[x >> 4][y >> 4] = false;
-        map.paintImmediately(x, y, 32, 32);//was map.paintImmediately(x,y,16,16);
+      //was map.paintImmediately(x,y,16,16);
+        map.paintImmediately(x, y, 16, 16);
         if(type == 7)
         {
             map.createBonus(x, y);
@@ -84,7 +85,7 @@ public class BomberVuur extends Thread
             paint2D(map.getGraphics());
         } else
         {
-            g.drawImage(plaatjes[type][frame], x, y, 32, 32, null);
+            g.drawImage(plaatjes[type][frame], x, y, 16, 16, null);
             //was g.drawImage(plaatjes[type][frame], x, y, 16, 16, null);
         }
         g.dispose();
@@ -96,7 +97,7 @@ public class BomberVuur extends Thread
         graphics2d.setRenderingHints((RenderingHints)hints);
         
         //was graphics2d.drawImage(plaatjes[type][frame],x,y,16,16,null)
-        graphics2d.drawImage(plaatjes[type][frame], x, y, 32,32, null);
+        graphics2d.drawImage(plaatjes[type][frame], x, y, 16,16, null);
     }
     //toetshoudbaarheid
     static 

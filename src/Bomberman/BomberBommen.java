@@ -93,7 +93,7 @@ public class BomberBommen extends Thread
         graphics2d.setRenderingHints((RenderingHints)hints);
      //was 
         //graphics2d.drawImage(plaatjes[frame], x, y, 16, 16, null);
-        graphics2d.drawImage(plaatjes[frame], x, y, 32, 32, null);
+        graphics2d.drawImage(plaatjes[frame], x, y, 16, 16, null);
     }
 //Static Keys en Bepaalt het basistype van alle toetsen gebruikt om de verschillende aspecten van de rendering en imaging pijpleidingen controle
     static 

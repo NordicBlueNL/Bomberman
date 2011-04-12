@@ -579,9 +579,11 @@ public class BomberPlayer extends Thread
         {
             if(moving)
             {
+            	//was g1.drawImage(sprites[playerNo - 1][state][frame], x, y - 8, 16, 22, null);
                 g1.drawImage(sprites[playerNo - 1][state][frame], x, y - 8, 16, 22, null);
             } else
             {
+            	//was g1.drawImage(sprites[playerNo - 1][state][frame], x, y - 8, 16, 22, null);
                 g1.drawImage(sprites[playerNo - 1][state][0], x, y - 8, 16, 22, null);
             }
         }
@@ -596,11 +598,11 @@ public class BomberPlayer extends Thread
             if(moving)
             {
             	//was graphics2d.drawImage(sprites[playerNo - 1][state][frame], x, y - 8, 16, 22, null);
-                graphics2d.drawImage(sprites[playerNo - 1][state][frame], x, y - 16, 32, 44, null);
+                graphics2d.drawImage(sprites[playerNo - 1][state][frame], x, y - 16, 16, 22, null);
             } else
             {
             	//was graphics2d.drawImage(sprites[playerNo - 1][state][0], x, y - 8, 16, 22, null);
-                graphics2d.drawImage(sprites[playerNo - 1][state][0], x, y - 16, 32, 44, null);
+                graphics2d.drawImage(sprites[playerNo - 1][state][0], x, y - 16, 16, 22, null);
             }
         }
     }

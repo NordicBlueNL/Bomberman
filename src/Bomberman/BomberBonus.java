@@ -94,7 +94,7 @@ public class BomberBonus extends Thread
         graphics2d.setRenderingHints((RenderingHints)hints);
 
      //was    graphics2d.drawImage(plaatjes[frame], x, y, 16, 16, null);
-        graphics2d.drawImage(plaatjes[frame], x, y, 32, 32, null);
+        graphics2d.drawImage(plaatjes[frame], x, y, 16, 16, null);
     }
 //Static laat ook weer de keys zien die gebruikt worden in het spel, de huidige keys. 
     static 

@@ -166,7 +166,9 @@ public class BomberMap extends JPanel
 		}
 
 		rooster[1][1] = rooster[2][1] = rooster[1][2] = rooster[1][15] = rooster[2][15] = rooster[1][14] = rooster[15][1] = rooster[14][1] = rooster[15][2] = rooster[15][15] = rooster[15][14] = rooster[14][15] = -1;
+		//achtergrondkleur
 		backgroundColor = new Color(52, 108, 108);
+		//was setPreferredSize(new Dimension(272, 272));
 		setPreferredSize(new Dimension(272, 272));
 		setDoubleBuffered(true);
 		setBounds(0, 0, 17 << 4, 17 << 4);
@@ -177,6 +179,7 @@ public class BomberMap extends JPanel
 	public void setGameOver()
 	{
 		gameOver = true;
+		//	paintImmediately(0, 0, 272, 272);
 		paintImmediately(0, 0, 272, 272);
 	}
 
@@ -208,7 +211,7 @@ public class BomberMap extends JPanel
 				bonusRooster[bonus.r][bonus.c].kill();
 				bonusRooster[bonus.r][bonus.c] = null;
 				//was paintImmediately(bonus.r << 4, bonus.c << 4, 16, 16);
-				paintImmediately(bonus.r << 4, bonus.c << 4, 32, 32);
+				paintImmediately(bonus.r << 4, bonus.c << 4, 16, 16);
 				break;
 			}
 			k++;
@@ -415,12 +418,12 @@ public class BomberMap extends JPanel
 			{
 				g1.setColor(Color.black);
 				//was g1.fillRect(0,0,272,272)
-				g1.fillRect(0, 0, 544, 544);
+				g1.fillRect(0, 0, 272, 272);
 			} else
 			{
 				g1.setColor(backgroundColor);
 				//was g1.fillRect(0, 0, 272, 272);
-				g1.fillRect(0, 0, 544, 544);
+				g1.fillRect(0, 0, 272, 272);
 				for(int i = 0; i < 17; i++)
 				{
 					for(int j = 0; j < 17; j++)
@@ -428,12 +431,12 @@ public class BomberMap extends JPanel
 						if(rooster[i][j] > -1 && rooster[i][j] != 3 && rooster[i][j] != 7 && mapImages[level][rooster[i][j]] != null)
 						{
 							// was g1.drawImage(mapImages[level][rooster[i][j]], i << 4, j << 4, 16, 16, null);
-							g1.drawImage(mapImages[level][rooster[i][j]], i << 4, j << 4, 32, 32, null);
+							g1.drawImage(mapImages[level][rooster[i][j]], i << 4, j << 4, 16, 16, null);
 						} else
 							if(mapImages[level][2] != null)
 							{
 								//was g1.drawImage(mapImages[level][2], i << 4, j << 4, 16, 16, null);
-								g1.drawImage(mapImages[level][2], i << 4, j << 4, 32, 32, null);
+								g1.drawImage(mapImages[level][2], i << 4, j << 4, 16, 16, null);
 							}
 					}
 
@@ -478,12 +481,12 @@ public class BomberMap extends JPanel
 			graphics2d.setColor(Color.black);
 
 			//was graphics2d.fillRect(0, 0, 272, 272);
-			graphics2d.fillRect(0, 0, 544, 544);
+			graphics2d.fillRect(0, 0, 272, 272);
 		} else
 		{
 			graphics2d.setColor(backgroundColor);
 			//was graphics2d.fillRect(0, 0, 272, 272);
-			graphics2d.fillRect(0, 0, 544, 544);
+			graphics2d.fillRect(0, 0, 272, 272);
 			for(int i = 0; i < 17; i++)
 			{
 				for(int j = 0; j < 17; j++)
@@ -491,12 +494,12 @@ public class BomberMap extends JPanel
 					if(rooster[i][j] > -1 && rooster[i][j] != 3 && rooster[i][j] != 7 && mapImages[level][rooster[i][j]] != null)
 					{
 						//was graphics2d.drawImage(mapImages[level][rooster[i][j]], i << 4, j << 4, 16, 16, null);
-						graphics2d.drawImage(mapImages[level][rooster[i][j]], i << 4, j << 4, 32, 32, null);
+						graphics2d.drawImage(mapImages[level][rooster[i][j]], i << 4, j << 4, 16, 16, null);
 					} else
 						if(mapImages[level][2] != null)
 						{
 							//was graphics2d.drawImage(mapImages[level][2], i << 4, j << 4, 16, 16, null);
-							graphics2d.drawImage(mapImages[level][2], i << 4, j << 4, 32, 32, null);
+							graphics2d.drawImage(mapImages[level][2], i << 4, j << 4, 16, 16, null);
 						}
 				}
 
@@ -523,8 +526,12 @@ public class BomberMap extends JPanel
 			renderinghints.put(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
 			hints = renderinghints;
 		}
+		//was levelRand = new BomberRandInt(0,100);
 		levelRand = new BomberRandInt(0, 100);
+		
+		//was bonusRand = new BomberRandInt(0,7);
 		bonusRand = new BomberRandInt(0, 7);
+		
 		mapImages = new Image[3][3];
 		bombPlaatjes = new Image[2];
 		fireImages = new Image[8][8];
