@@ -38,6 +38,13 @@ implements ActionListener
 		map = bombermap;
 		totaalSpelers = spelerLinks = i;
 		gamesound.play();
+		//gamesound continue
+		if ( gamesound == null)
+		{ 
+			gamesound.play();
+		}
+		
+		
 		try
 		{
 			MediaTracker mediatracker = new MediaTracker(this);
@@ -209,11 +216,14 @@ implements ActionListener
 			//timer overheen gooien?
 			oversound.play();
 			
-			oversound.close();
+			//oversound.close();
 			
 			verstrekenSeconden %= 2;
 			paintImmediately(0, 272 - plaatjes[5].getHeight(this) / 2, plaatjes[5].getWidth(this) / 2, plaatjes[5].getHeight(this) / 2);
+		
+		
 		}
+		
 	
 			//if( ! gameOver)
 			//  { 
