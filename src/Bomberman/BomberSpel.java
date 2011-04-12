@@ -190,7 +190,7 @@ public class BomberSpel extends JPanel
                     continue;
                 }
                 winnaar = i;
-                break;
+                break; 
             }
 
             gameOver = true;
