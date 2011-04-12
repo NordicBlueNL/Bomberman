@@ -194,6 +194,8 @@ public class BomberSpel extends JPanel
 
             gameOver = true;
             map.setGameOver();
+            mp3.close();
+            
             timer.stop();
             timer = new Timer(500, this);
             timer.start();

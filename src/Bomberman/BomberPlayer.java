@@ -47,7 +47,7 @@ public class BomberPlayer extends Thread
         isDead = false;
         keyPressed = false;
         keys = null;
-        totalBombs = 5;
+        totalBombs = 1;
         usedBombs = 0;
         fireLength = 2;
         isActive = true;
