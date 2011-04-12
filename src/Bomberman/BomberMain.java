@@ -53,7 +53,7 @@ public class BomberMain extends JFrame
             }
 
         });
-        setTitle("Bomberman 2.0, Pascal, Niels en Arne");
+        setTitle("Bomberman 2.0, Pascal, Niels en Arne Inf1CD Groep 1");
         try
         {
             setIconImage(Toolkit.getDefaultToolkit().getImage((new File(RP + "src/Images/Bomberman.gif")).getCanonicalPath()));
@@ -77,10 +77,10 @@ public class BomberMain extends JFrame
 	public void newGame(int i)
     {
         JDialog jdialog = new JDialog(this, "Loading Game...", false);
-        jdialog.setDefaultCloseOperation(0);
+        jdialog.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         jdialog.setSize(new Dimension(200, 0));
-        jdialog.setResizable(false);
-        int j = getLocation().x + (getSize().width - 200) / 2;
+        jdialog.setResizable(true);
+        int j = getLocation().x + (getSize().width ) / 2;//was int J = getLocation().x + (getSize().width - 200) / 2
         int k = getLocation().y + getSize().height / 2;
         jdialog.setLocation(j, k);
         jdialog.show();
@@ -94,14 +94,15 @@ public class BomberMain extends JFrame
         if(Main.J2)
         {
             BomberBGM.dempen();
-            BomberBGM.verander("Battle.mid");
+            BomberBGM.change("Battle" );
         }
     }
 
-    public static void main(String args[])
+    public static void main(String []args)
     {
         new BomberMain();
-        BomberMain bombermain = new BomberMain();
+        //hiermee kan je hem meerdere keeren openen tegelijk.... 
+       // BomberMain bomberMain1 = new BomberMain();
     }
 
     static 

@@ -32,7 +32,7 @@ public class BomberBGM
     }
 
     //Change is voor de muziek(Muziek veranderen)
-    public static void verander(String s)
+    public static void change(String s)
     {
         if(Main.J2)
         {
