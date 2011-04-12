@@ -17,11 +17,10 @@ public class BomberMenu extends JPanel
     private static Image buttonImagesDown[];
     private static Image buttonImagesUp[];
     private static Object hints = null;
-    MP3 mpmenusound = new MP3("./src/Sounds/BomberBGM/menusound.mp3");
-
+  
+	
     public BomberMenu(BomberMain bombermain)
     {
-    	
     	//mpmenusound.play();
         main = null;
         imageButtons = null;

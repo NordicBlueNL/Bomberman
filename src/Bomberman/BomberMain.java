@@ -18,6 +18,7 @@ public class BomberMain extends JFrame
     //was public static final int size = 16;
     public static final int size = 16;
 
+    
     @SuppressWarnings("deprecation")
 	public BomberMain()
     {
@@ -79,7 +80,7 @@ public class BomberMain extends JFrame
     {
         JDialog jdialog = new JDialog(this, "Loading Game...", false);
         jdialog.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        
+       
           jdialog.setSize(new Dimension(200, 0));
         jdialog.setResizable(false);
       //was int J = getLocation().x + (getSize().width - 200) / 2
