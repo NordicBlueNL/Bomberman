@@ -22,7 +22,7 @@ public class BomberSpel extends JPanel
     public static int totaalSpelers;
     public static int spelerLinks;
     public static BomberPlayer spelers[] = null;
-    MP3 mp3 = new MP3("C:/Users/Public/Music/Sample Music/Kalimba.mp3");
+    MP3 mp3 = new MP3("./src/Sounds/BomberBGM/Kalimba.mp3");
 
     //BomberGame erft van BomberMain en BomberMap. 
     public BomberSpel(BomberMain bombermain, BomberMap bombermap, int i)
