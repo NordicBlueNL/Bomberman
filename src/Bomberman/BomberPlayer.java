@@ -47,7 +47,7 @@ public class BomberPlayer extends Thread
         isDead = false;
         keyPressed = false;
         keys = null;
-        totalBombs = 1;
+        totalBombs = 5;
         usedBombs = 0;
         fireLength = 2;
         isActive = true;
@@ -598,11 +598,11 @@ public class BomberPlayer extends Thread
             if(moving)
             {
             	//was graphics2d.drawImage(sprites[playerNo - 1][state][frame], x, y - 8, 16, 22, null);
-                graphics2d.drawImage(sprites[playerNo - 1][state][frame], x, y - 16, 16, 22, null);
+                graphics2d.drawImage(sprites[playerNo - 1][state][frame], x, y - 8, 16, 22, null);
             } else
             {
             	//was graphics2d.drawImage(sprites[playerNo - 1][state][0], x, y - 8, 16, 22, null);
-                graphics2d.drawImage(sprites[playerNo - 1][state][0], x, y - 16, 16, 22, null);
+                graphics2d.drawImage(sprites[playerNo - 1][state][0], x, y - 8, 16, 22, null);
             }
         }
     }
