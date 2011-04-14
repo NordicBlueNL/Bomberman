@@ -4,7 +4,6 @@ import java.io.*;
 // keyopslaan in array gekoppeld aan de game. 
 public abstract class BomberKeyConfig
 {
-
 	public static int toetsen[][] = null;
 	//speler 1
 	public static final int P1 = 0;
@@ -44,7 +43,6 @@ public abstract class BomberKeyConfig
 		}
 		return flag;
 	}
-
 	public static void schrijfBestand()
 	{
 		try
@@ -58,7 +56,6 @@ public abstract class BomberKeyConfig
 			new ErrorDialog(exception);
 		}
 	}
-
 	public static void maakStandaardBestand()
 	{
 		if(toetsen == null)
@@ -87,7 +84,6 @@ public abstract class BomberKeyConfig
 		toetsen[3][4] = 105;
 		schrijfBestand();
 	}
-
 	static 
 	{
 		if(!openBestand())

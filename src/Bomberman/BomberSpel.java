@@ -9,7 +9,6 @@ import javax.swing.*;
 public class BomberSpel extends JPanel
 implements ActionListener
 {
-
 	//Bombermain linken naar BomberSpel
 	private BomberMain main;
 	//Boolean GameOver
@@ -35,27 +34,24 @@ implements ActionListener
 	//Sounds in de Game
 	MP3 gamesound = new MP3("./src/Sounds/BomberBGM/gamesound.mp3");
 
-
 	//BomberGame erft van BomberMain en BomberMap.
 	public BomberSpel(BomberMain bombermain, BomberMap bombermap, int i)
 	{
-
-		main = null;
-		gameOver = false;
-		map = null;
-		winnaar = -1;
-		timer = null;
-		verstrekenSeconden = 0;
-		main = bombermain;
-		map = bombermap;
-		totaalSpelers = spelerLinks = i;
-		gamesound.play();
+		this.main = null;
+		this.gameOver = false;
+		this.map = null;
+		this.winnaar = -1;
+		this.timer = null;
+		this.verstrekenSeconden = 0;
+		this.main = bombermain;
+		this.map = bombermap;
+		this.totaalSpelers = spelerLinks = i;
+		this.gamesound.play();
 		//gamesound continue
 		if ( gamesound == null)
 		{ 
 			gamesound.play();
 		}
-
 
 		try
 		{
@@ -64,7 +60,6 @@ implements ActionListener
 			{
 				mediatracker.addImage(plaatjes[k], k);
 			}
-
 			mediatracker.waitForAll();
 		}
 		catch(Exception exception)
@@ -76,13 +71,11 @@ implements ActionListener
 		{
 			spelers[j] = new BomberPlayer(this, bombermap, j + 1);
 		}
-
 		setDoubleBuffered(true);
 		setBounds(0, 0, 17 << 4, 17 << 4);
 		setOpaque(false);
 		bombermain.getLayeredPane().add(this, 0);
 	}
-
 	//Wanneer een keyevent is dan kan dit ook stop gezet worden als alle overige spelers overleden zijn
 	public void keyPressed(KeyEvent keyevent)
 	{
@@ -91,9 +84,7 @@ implements ActionListener
 			for(int i = 0; i < totaalSpelers; i++)
 			{
 				spelers[i].keyPressed(keyevent);
-
 			}
-
 		} else
 			if(keyevent.getKeyCode() == 10)
 			{
@@ -113,7 +104,6 @@ implements ActionListener
 			{
 				spelers[i].keyReleased(keyevent);
 			}
-
 		}
 	}
 	//Tekenen van de aantal spelers en en wie er dood gaat// gewonnen heeft 
@@ -126,18 +116,14 @@ implements ActionListener
 			{
 				spelers[i].paint(g);
 			}
-
 		}
 		if(Main.J2)
 		{
 			paint2D(g);
 		} else
 		{
-
-
 			if(gameOver)
 			{
-
 				g1.drawImage(plaatjes[winnaar], 0, -25, 272, 272, this);
 				if(verstrekenSeconden == 0)
 				{
@@ -167,12 +153,10 @@ implements ActionListener
 	//Paint 2D.de tekeningen Game Over en welke spelers er nog over blijven. 
 	public void paint2D(Graphics g)
 	{
-
 		Graphics2D graphics2d = (Graphics2D)g;
 		graphics2d.setRenderingHints((RenderingHints)hints);
 		if(gameOver)
 		{
-
 			graphics2d.drawImage(plaatjes[winnaar], 0, -25, 272, 272, this);
 			if(verstrekenSeconden == 0)
 			{
@@ -188,7 +172,6 @@ implements ActionListener
 			{
 				spelers[i].deactivate();
 			}
-
 			timer = new Timer(1000, this);
 			timer.start();
 		}
@@ -208,10 +191,8 @@ implements ActionListener
 			{
 				if(spelers[i].isDead())
 				{
-					gamesound.close();
 					continue;
 				}
-
 				winnaar = i;
 				break; 
 			}
@@ -221,9 +202,9 @@ implements ActionListener
 			timer = new Timer(500, this);
 			timer.start();
 		}
-
 		if(gameOver)
 		{	
+			gamesound.close();
 			verstrekenSeconden %= 2;
 			paintImmediately(0, 272 - plaatjes[5].getHeight(this) / 2, plaatjes[5].getWidth(this) / 2, plaatjes[5].getHeight(this) / 2);
 		}
@@ -255,12 +236,10 @@ implements ActionListener
 				String s1 = s + "Player " + (i + 1) + " Wins.jpg";
 				plaatjes[i] = Toolkit.getDefaultToolkit().getImage((new File(s1)).getCanonicalPath());
 			}
-
 			String s2 = s + "Draw.jpg";
 			plaatjes[4] = Toolkit.getDefaultToolkit().getImage((new File(s2)).getCanonicalPath());
 			s2 = s + "Enter to Continue.jpg";
 			plaatjes[5] = Toolkit.getDefaultToolkit().getImage((new File(s2)).getCanonicalPath());
-
 		}
 		catch(Exception exception)
 		{

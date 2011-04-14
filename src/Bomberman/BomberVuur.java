@@ -5,33 +5,25 @@ import java.awt.*;
 //BomberFire Thread. Klasse Vuur na de Bom
 public class BomberVuur extends Thread
 {
-
-	private BomberMap map;
+	private BomberMap map = null;
 	private int rooster[][];
-	private int x;
-	private int y;
-	private int type;
-	private int frame;
-	private int eigenaar;
+	private int x = 0;
+	private int y = 0;
+	private int type = 0;
+	private int frame = 0;
+	private int eigenaar = 0;
 	private static Image plaatjes[][] = null;
 	private static Object hints = null;
 
 	public BomberVuur(BomberMap bombermap, int i, int j, int k)
 	{
-		map = null;
-		rooster = null;
-		x = 0;
-		y = 0;
-		type = 0;
-		frame = 0;
-		eigenaar = 0;
-		map = bombermap;
-		rooster = bombermap.rooster;
-		x = i;
-		y = j;
-		type = k;
-		eigenaar = eigenaar - 1;
-		plaatjes = BomberMap.fireImages;
+		this.map = bombermap;
+		this.rooster = bombermap.rooster;
+		this.x = i;
+		this.y = j;
+		this.type = k;
+		this.eigenaar = eigenaar - 1;
+		this.plaatjes = BomberMap.fireImages;
 		if(k == 7)
 		{
 			rooster[i >> 4][j >> 4] = 7;
@@ -57,7 +49,6 @@ public class BomberVuur extends Thread
 					BomberSpel.spelers[i].kill();
 				}
 			}
-
 			frame = frame + 1;
 				try
 				{
@@ -65,7 +56,6 @@ public class BomberVuur extends Thread
 				}
 			catch(Exception exception) { }
 		} 
-
 		while(frame <= 7);
 		map.rooster[x >> 4][y >> 4] = -1;
 		map.fireRooster[x >> 4][y >> 4] = false;

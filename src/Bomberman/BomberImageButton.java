@@ -15,23 +15,22 @@ public class BomberImageButton
 	private int h;
 	//plaatjes buttons
 	private Image plaatjes[];
-	private int staat;
+	private int staat = 0;
 	private static Object hints = null;
 	//BomberImageButton laat de buttonsplaatjes zien. 
 	public BomberImageButton(JPanel jpanel, Image aimage[])
 	{
-		staat = 0;
-		paneel = jpanel;
-		plaatjes = aimage;
-		w = aimage[0].getWidth(jpanel);
-		h = aimage[0].getHeight(jpanel);
+		this.paneel = jpanel;
+		this.plaatjes = aimage;
+		this.w = aimage[0].getWidth(jpanel);
+		this.h = aimage[0].getHeight(jpanel);
 	}
 	//Setinfo, X,Y, ID en Rect. 
 	public void setInfo(int i, int j, int k)
 	{
-		x = i;
-		y = j;
-		ID = k;
+		this.x = i;
+		this.y = j;
+		this.ID = k;
 	}
 	//GetID, Identification
 	public int getID()
@@ -63,7 +62,6 @@ public class BomberImageButton
 			g1.drawImage(plaatjes[staat], x, y, w / 4, h / 4, null);
 		}
 	}
-
 	public void paint2D(Graphics g)
 	{
 		Graphics2D graphics2d = (Graphics2D)g;

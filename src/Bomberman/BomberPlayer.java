@@ -7,87 +7,60 @@ import java.io.File;
 public class BomberPlayer extends Thread
 {
 	//BomberSpel linken met BomberPlayer
-    public BomberSpel game;
+    public BomberSpel game = null;
     //BomberMap linken met BomberPlayer
-    private BomberMap map;
+    private BomberMap map = null;
     //Boolean bombGrid 
-    public boolean bombGrid[][];
+    public boolean bombGrid[][] = null;
     //BomberKeyQueue linken met BomberPlayer (keys aan speler koppelen)
-    private BomberKeyQueue keyQueue;
+    private BomberKeyQueue keyQueue = null;
     //Boolean bombKeyDown
-    private boolean bombKeyDown;
+    private boolean bombKeyDown = false;
     //byte dirKeysDown
-    private byte dirKeysDown;
+    private byte dirKeysDown = 0;
     //byte currentDirKeyDown 
-    private byte currentDirKeyDown;
+    private byte currentDirKeyDown = 0;
     //Boolean isExploding(explosie)
-    private boolean isExploding;
+    private boolean isExploding = false ;
     //Boolean isDead (persoon is dood)
-    private boolean isDead;
+    private boolean isDead = false;
     //Boolean keyPressed(keypressed)
-    private boolean keyPressed;
+    private boolean keyPressed = false;
     //Int Keys[] deze houd de keys bij het spel en speler
-    private int keys[];
+    private int keys[] = null;
     //totalboms (start speler met 1 bom)
-    public int totalBombs;
+    public int totalBombs = 1;
     //usedboms (speler heeft x aantal gebruikt) 
-    public int usedBombs;
+    public int usedBombs = 0;
     //int firelength (houd de lengte van vuur bij
-    public int fireLength;
+    public int fireLength = 2;
     //boolean isActive houd bom bij of deze geplaats is of niet
-    public boolean isActive;
-    public int x;
-    public int y;
-    private int playerNo;
-    private int state;
+    public boolean isActive = true;
+    public int x = 0;
+    public int y = 0;
+    private int playerNo = 0;
+    private int state = 1;
     //Moving voor: is de speler aan het lopen of niet. 
-    private boolean moving;
-    private int frame;
-    private boolean clear;
+    private boolean moving = false;
+    private int frame = 0;
+    private boolean clear = false;
     private static Image sprites[][][];
     private static Object hints = null;
 
     //Bomberplayer erft van BomberGame. het daadwerkelijke lopen en veranderen van plaatje bij BombnerPlayer. 
     public BomberPlayer(BomberSpel bombergame, BomberMap bombermap, int i)
     {
-        game = null;
-        map = null;
-        bombGrid = null;
-        keyQueue = null;
-        bombKeyDown = false;
-        dirKeysDown = 0;
-        currentDirKeyDown = 0;
-        isExploding = false;
-        isDead = false;
-        keyPressed = false;
-        keys = null;
-        //speler start met 1 bom
-        totalBombs = 1;
-        //speler heeft er nog 0 gebruikt
-        usedBombs = 0;
-        //vuurlengte is 2 vakjes naar links/rechts/beneden/boven
-        fireLength = 2;
-        isActive = true;
-        x = 0;
-        y = 0;
-        playerNo = 0;
-        state = 1;
-        moving = false;
-        frame = 0;
-        clear = false;
-        game = bombergame;
-        map = bombermap;
-        playerNo = i;
-        bombGrid = new boolean[17][17];
+        this.game = bombergame;
+        this.map = bombermap;
+        this.playerNo = i;
+        this.bombGrid = new boolean[17][17];
         for(int j = 0; j < 17; j++)
         {
             for(int k = 0; k < 17; k++)
             {
                 bombGrid[j][k] = false;
             }
-
         }
-
         byte byte0 = 0;
         byte byte1 = 0;
         switch(playerNo)
@@ -110,8 +83,8 @@ public class BomberPlayer extends Thread
             byte1 = 15;
             break;
         }
-        x = byte0 << 4;
-        y = byte1 << 4;
+       this.x = byte0 << 4;
+       this.y = byte1 << 4;
         MediaTracker mediatracker = new MediaTracker(bombergame);
         try
         {
@@ -124,11 +97,8 @@ public class BomberPlayer extends Thread
                     {
                         mediatracker.addImage(sprites[j1][k1][l1], l++);
                     }
-
                 }
-
             }
-
             mediatracker.waitForAll();
         }
         catch(Exception exception)
@@ -141,7 +111,6 @@ public class BomberPlayer extends Thread
         {
             keys[i1] = BomberKeyConfig.toetsen[i - 1][i1];
         }
-
         setPriority(10);
         start();
     }
@@ -386,7 +355,6 @@ public class BomberPlayer extends Thread
                                 flag2 = true;
                                 break;
                             }
-
                             if(!flag2)
                             {
                                 for(l = byte2 / 4; l <= byte1; l += byte2 / 4)
@@ -398,7 +366,6 @@ public class BomberPlayer extends Thread
                                     flag2 = true;
                                     break;
                                 }
-
                             }
                             if(flag2)
                             {
@@ -439,7 +406,6 @@ public class BomberPlayer extends Thread
                                 flag3 = true;
                                 break;
                             }
-
                             if(!flag3)
                             {
                                 for(i1 = byte2 / 4; i1 <= byte1; i1 += byte2 / 4)
@@ -451,7 +417,6 @@ public class BomberPlayer extends Thread
                                     flag3 = true;
                                     break;
                                 }
-
                             }
                             if(flag3)
                             {
@@ -504,7 +469,6 @@ public class BomberPlayer extends Thread
                                     flag4 = true;
                                     break;
                                 }
-
                             }
                             if(flag4)
                             {
@@ -658,12 +622,10 @@ public class BomberPlayer extends Thread
                         s1 = s1 + ai[j] + "" + (k + 1) + ".gif";
                         sprites[i][j][k] = toolkit.getImage((new File(s1)).getCanonicalPath());
                     }
-
                 }
-
             }
-
         }
+        
         catch(Exception exception)
         {
             new ErrorDialog(exception);

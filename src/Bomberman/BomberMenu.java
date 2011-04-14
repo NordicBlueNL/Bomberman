@@ -27,7 +27,6 @@ public class BomberMenu extends JPanel
 
 	public BomberMenu(BomberMain bombermain)
 	{
-
 		main = null;
 		imageButtons = null;
 		selection = 0;
@@ -74,17 +73,17 @@ public class BomberMenu extends JPanel
 		int i = selection;
 		switch(keyevent.getKeyCode())
 		{
-		case 37: // '%'
-		case 38: // '&'
+		case 37: 
+		case 38: 
 		i--;
 		break;
 
-		case 39: // '\''
-		case 40: // '('
+		case 39: 
+		case 40: 
 				i++;
 		break;
 
-		case 10: // '\n'
+		case 10:
 		doCommand(selection);
 		break;
 		}
@@ -109,17 +108,17 @@ public class BomberMenu extends JPanel
 		default:
 			break;
 
-		case 0: // '\0'
-		case 1: // '\001'
-		case 2: // '\002'
+		case 0: 
+		case 1: 
+		case 2: 
 			main.newGame(selection + 2);
 			break;
 
-		case 3: // '\003'
+		case 3: 
 			new BomberConfigDialog(main);
 			break;
 
-		case 4: // '\004'
+		case 4: 
 			//in engels gezet omdat je dan het spel bij mindertalige nederlanders ook begrepen kan worden
 			JOptionPane joptionpane = new JOptionPane("Are you sure you want to exit Bomberman?");
 			joptionpane.setOptionType(0);
@@ -153,7 +152,6 @@ public class BomberMenu extends JPanel
 				imageButtons[i].paint(g1);
 			}
 		}
-
 	}
 
 	public void paint2D(Graphics g)
@@ -205,7 +203,6 @@ public class BomberMenu extends JPanel
 				buttonImagesDown[i] = toolkit.getImage((new File(s1 + " Down.gif")).getCanonicalPath());//geselecteerd of niet. Down is geen lichtwitgevend
 				buttonImagesUp[i] = toolkit.getImage((new File(s1 + " Up.gif")).getCanonicalPath());//up is met een bommetje ervoor. lichtgevend. 
 			}
-
 		}
 		catch(Exception exception)
 		{

@@ -14,8 +14,7 @@ import javax.swing.*;
 public class SoundPlayer extends JPanel
 implements Runnable, LineListener, MetaEventListener, ActionListener
 {
-
-	public Vector<File> Muziek;
+	public Vector<File> Muziek = new Vector<File>();
 	private Thread thread;
 	private Sequencer sequencer;
 	private boolean midiEOM;
@@ -24,11 +23,11 @@ implements Runnable, LineListener, MetaEventListener, ActionListener
 	private MidiChannel channels[];
 	private Object huidigemuziek;
 	private String huidigenaam;
-	private int num;
+	private int num = -1;
 	private boolean bump;
-	private boolean gepauzeerd;
-	public boolean loop;
-	private int volumn;
+	private boolean gepauzeerd = false;
+	public boolean loop = true;
+	private int volumn = 10;
 	JButton startknop;
 	JButton pauseknop;
 	JButton vorigeknop;
@@ -36,11 +35,6 @@ implements Runnable, LineListener, MetaEventListener, ActionListener
 
 	public SoundPlayer(String s)
 	{
-		Muziek = new Vector<File>();
-		num = -1;
-		gepauzeerd = false;
-		loop = true;
-		volumn = 10;
 		if(s != null)
 		{
 			laadbestand(s);

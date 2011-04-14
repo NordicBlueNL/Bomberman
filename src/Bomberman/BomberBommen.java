@@ -5,18 +5,17 @@ import java.awt.*;
 //BomberBomb, deze heeft een Thread. 
 public class BomberBommen extends Thread
 {
-
 	//BomberMap linken aan BomberBommen
 	private BomberMap map;
-	private int x;
-	private int y;
-	private int frame;
+	private int x = 0;
+	private int y = 0;
+	private int frame = 0;
 	//levend of niet levend?
-	private boolean levend;
+	private boolean levend = true;
 	//welke speler hoort bij welke eigenaar. 
-	private int eigenaar;
+	private int eigenaar = 0;
 	//Tijd bijna over?
-	private int aftellen;
+	private int aftellen = 3900;
 	//Array plaatjes
 	private static Image plaatjes[] = null;
 	private static Object hints = null;
@@ -24,14 +23,7 @@ public class BomberBommen extends Thread
 	public BomberBommen(BomberMap bombermap, int i, int j, int k)
 	{
 		map = null;
-		x = 0;
-		y = 0;
-		frame = 0;
-		levend = true;
-		eigenaar = 0;
-		//tijd voordat het spel is afgelopen (miliseconde)(3minuten9seconden())
-		aftellen = 3900;
-		map = bombermap;
+		this.map = bombermap;
 		x = i;
 		y = j;
 		eigenaar = k - 1;
@@ -40,7 +32,6 @@ public class BomberBommen extends Thread
 		setPriority(10);
 		start();
 	}
-
 	//Run, als het allemaal aan is. met een meth. thread om de tijd bij te houden. 
 	public synchronized void run()
 	{
@@ -71,7 +62,6 @@ public class BomberBommen extends Thread
 		BomberMain.sndEffectSpeler.speelmuziek("Explosion");
 		map.createFire(x, y, eigenaar, 0);
 	}
-
 	//shortBomb, kort maar krachtig korte bom inzetten
 	public void shortBomb()
 	{

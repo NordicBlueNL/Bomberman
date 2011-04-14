@@ -9,11 +9,11 @@ import javax.swing.JFrame;
 //BomberMain de hoofdapp die dus JFrame gebruikt en de vormgeving van de app, het programma 
 public class BomberMain extends JFrame
 {
-	//realpath vaststellen totaan src. 
+	//realpath vaststellen tot aan src. 
 	public static String RP = "./";
 	//Bombermenu en bomberspel koppelen aan bombermain
-	private BomberMenu menu;
-	private BomberSpel game;
+	private BomberMenu menu = null;
+	private BomberSpel game = null;
 	//Bombersoundeffect soundeffectspeler voor de effectgeluiden
 	public static BomberSndEffect sndEffectSpeler = null;
 	public static final int shiftCount = 4;
@@ -24,15 +24,11 @@ public class BomberMain extends JFrame
 	@SuppressWarnings("deprecation")
 	public BomberMain()
 	{
-		menu = null;
-		game = null;
 		addWindowListener(new WindowAdapter() {
-
 			public void windowClosing(WindowEvent windowevent)
 			{
 				System.exit(0);
 			}
-
 		});
 		addKeyListener(new KeyAdapter() {
 
@@ -82,10 +78,8 @@ public class BomberMain extends JFrame
 	{
 		JDialog jdialog = new JDialog(this, "Loading Game...", false);
 		jdialog.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-
 		jdialog.setSize(new Dimension(200, 0));
 		jdialog.setResizable(false);
-		//was int J = getLocation().x + (getSize().width - 200) / 2
 		int j = getLocation().x + (getSize().width-200 ) / 2;
 		int k = getLocation().y + getSize().height / 2;
 		jdialog.setLocation(j, k);
@@ -107,14 +101,9 @@ public class BomberMain extends JFrame
 	public static void main(String []args)
 	{
 		new BomberMain();
-		//hiermee kan je hem meerdere keeren openen tegelijk.... 
-		// BomberMain bomberMain1 = new BomberMain();
 	}
-
 	static 
 	{
 		sndEffectSpeler = new BomberSndEffect();
 	}
-
-
 }

@@ -7,11 +7,11 @@ public class BomberBonus extends Thread
 {
 	//BomberMap linken met BOmberBonus
 	private BomberMap map;
-	private int x;
-	private int y;
-	private int frame;
-	private boolean levend;
-	private int type;
+	private int x = 0;
+	private int y = 0;
+	private int frame = 0;
+	private boolean levend = true;
+	private int type = 0;
 	//Array plaatjes bomberBonus
 	private Image plaatjes[];
 	private static Object hints = null;
@@ -22,11 +22,6 @@ public class BomberBonus extends Thread
 	public BomberBonus(BomberMap bombermap, int i, int j, int k)
 	{
 		map = null;
-		x = 0;
-		y = 0;
-		frame = 0;
-		levend = true;
-		type = 0;
 		plaatjes = null;
 		map = bombermap;
 		x = i;
@@ -70,7 +65,6 @@ public class BomberBonus extends Thread
 			}
 		kill();
 	}
-
 	//Kill laat zien of de persoon ontploft is, als dit zo is zet hij Alive op false. 
 	public void kill()
 	{

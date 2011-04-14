@@ -6,18 +6,15 @@ public class BomberKeyQueue
 	private class Node
 	{
 		//data die deze laad
-		public byte data;
+		public byte data = 0;
 		//vorige knooppunt
-		public Node vorige;
+		public Node vorige = null;
 		//volgende knooppunt
-		public Node volgende;
+		public Node volgende = null;
 
 		public Node(byte byte0)
 		{
-			data = 0;
-			vorige = null;
-			volgende = null;
-			data = byte0;
+			this.data = byte0;
 		}
 	}
 
@@ -30,9 +27,9 @@ public class BomberKeyQueue
 
 	public BomberKeyQueue()
 	{
-		head = null;
-		tail = null;
-		totaalItems = 0;
+		this.head = null;
+		this.tail = null;
+		this.totaalItems = 0;
 	}
 
 	public void push(byte byte0)
@@ -94,7 +91,6 @@ public class BomberKeyQueue
 				totaalItems--;
 			}
 		}
-
 	}
 
 	public void verwijderAlles()
@@ -129,7 +125,6 @@ public class BomberKeyQueue
 			flag = true;
 			break;
 		}
-
 		return flag;
 	}
 }

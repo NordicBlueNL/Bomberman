@@ -7,7 +7,6 @@ import javax.swing.*;
 //Errordialog als er een fout in het spel optreed. 
 public class ErrorDialog
 {
-
 	@SuppressWarnings("deprecation")
 	public ErrorDialog(Exception exception)
 	{
@@ -25,8 +24,7 @@ public class ErrorDialog
 		jdialog.show();
 		System.exit(-1);
 	}
-
-
+	
 	public ErrorDialog(Exception exception, boolean flag)
 	{
 		CharArrayWriter chararraywriter = new CharArrayWriter();

@@ -2,9 +2,7 @@ package Bomberman;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.EventObject;
 import javax.swing.*;
-import javax.swing.text.JTextComponent;
 
 //Klasse BomberConfigDialog heeft een Actionlistener en erft van JDialog., in menu ControlSetup 
 public class BomberConfigDialog extends JDialog
@@ -14,6 +12,7 @@ implements ActionListener
 	{
 		private JDialog me;
 		//getKeyDialog houd bij welke keys gebruikt worden op heden. 
+		@SuppressWarnings("deprecation")
 		public GetKeyDialog(JDialog jdialog, String s, boolean flag)
 		{
 			me = null;
@@ -21,7 +20,6 @@ implements ActionListener
 			setModal(flag);
 			me = this;
 			addKeyListener(new KeyAdapter() {
-
 				public void keyPressed(KeyEvent keyevent)
 				{
 					if(waitingForKey)
@@ -43,13 +41,11 @@ implements ActionListener
 									break;
 								}
 							}
-
 							if(flag1)
 							{
 								break;
 							}
 						}
-
 						if(!flag1)
 						{
 							keys[k][l] = i1;
@@ -67,7 +63,6 @@ implements ActionListener
 						}
 					}
 				}
-
 			});
 			setResizable(false);
 			setSize(300, 0);
@@ -81,7 +76,8 @@ implements ActionListener
 	//keys bij houden in array 
 	private int keys[][];
 	//onthouden welke keys de user wilt gebruikten
-	private int keysBeingSet[] = {
+	private int keysBeingSet[] = 
+	{
 			-1, -1
 	};
 	//waiting for key is als spel moet wachten totdat de key word ingedrukt door gebruiker
@@ -106,7 +102,6 @@ implements ActionListener
 			{
 				keys[i][j] = BomberKeyConfig.toetsen[i][j];
 			}
-
 		}
 
 		JPanel jpanel = new JPanel(new GridLayout(2, 2));
@@ -118,10 +113,9 @@ implements ActionListener
 			keyFields[k] = new JTextField[5];
 			setupPanel(k, jpanel, ajpanel[k], keyFields[k]);
 		}
-
 		JPanel jpanel1 = new JPanel(new FlowLayout(1));
 		jpanel1.setBorder(BorderFactory.createEtchedBorder());
-		jpanel1.add(new JLabel("Klik op button voor een toetsverandering.", 0));
+		jpanel1.add(new JLabel("Klik op knop voor een toetsverandering.", 0));
 		getContentPane().add(jpanel1, "North");
 		getContentPane().add(jpanel, "Center");
 		JPanel jpanel2 = new JPanel(new FlowLayout(1));
@@ -151,23 +145,23 @@ implements ActionListener
 			ajtextfield[j] = new JTextField(10);
 			switch(j)
 			{
-			case 0: // '\0'
+			case 0: 
 			buttons[i][j].setText("Omhoog");
 			break;
 
-			case 1: // '\001'
+			case 1: 
 				buttons[i][j].setText("Beneden");
 				break;
 
-			case 2: // '\002'
+			case 2: 
 				buttons[i][j].setText("Links");
 				break;
 
-			case 3: // '\003'
+			case 3: 
 				buttons[i][j].setText("Rechts");
 				break;
 
-			case 4: // '\004'
+			case 4: 
 				buttons[i][j].setText("Bom Plaatsen");
 				break;
 			}
@@ -177,7 +171,6 @@ implements ActionListener
 			jpanel2.add(buttons[i][j]);
 			jpanel3.add(ajtextfield[j]);
 		}
-
 		jpanel1 = new JPanel(new GridLayout(1, 2));
 		jpanel1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Player " + (i + 1) + " ToetsCombinatie"));
 		jpanel1.add(jpanel2);
@@ -197,7 +190,6 @@ implements ActionListener
 				}
 
 			}
-
 			BomberKeyConfig.schrijfBestand();
 			dispose();
 		} else
@@ -222,22 +214,15 @@ implements ActionListener
 							break;
 						}
 					}
-
 					if(flag)
 					{
 						break;
 					}
 				}
-
 				keysBeingSet[0] = j;
 				keysBeingSet[1] = l;
 				waitingForKey = true;
 				new GetKeyDialog(this, "Druk je gewenste toets in.....", true);
 			}
 	}
-
-
-
-
-
 }

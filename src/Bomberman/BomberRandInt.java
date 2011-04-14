@@ -10,10 +10,10 @@ public class BomberRandInt
 
 	public BomberRandInt(int i, int j)
 	{
-		low = 0;
-		high = 0;
-		low = i;
-		high = j;
+		this.low = 0;
+		this.high = 0;
+		this.low = i;
+		this.high = j;
 	}
 
 	public int draw()
@@ -41,7 +41,5 @@ public class BomberRandInt
 		{
 			buffer[i] = Math.random();
 		}
-
 	}
 }
-

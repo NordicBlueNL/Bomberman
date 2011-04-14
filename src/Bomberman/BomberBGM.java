@@ -8,7 +8,6 @@ public class BomberBGM
 	//Object muziek speler // backgroundmanager 
 	private static Object mspeler;
 	private static int laatstGeselecteerd = -1;
-
 	//public BomberBGM
 	public BomberBGM()
 	{
@@ -29,7 +28,6 @@ public class BomberBGM
 			((SoundPlayer)mspeler).open();
 		}
 	}
-
 	//Change is voor de muziek(Muziek veranderen)
 	public static void change(String s)
 	{
@@ -44,7 +42,6 @@ public class BomberBGM
 			}
 		}
 	}
-
 	//Muziek stoppen
 	public static void stop()
 	{
@@ -59,7 +56,6 @@ public class BomberBGM
 		if(Main.J2)
 		{
 			((SoundPlayer)mspeler).dempen();
-
 		}
 	}
 	//Muziek weer luisteren
@@ -70,6 +66,4 @@ public class BomberBGM
 			((SoundPlayer)mspeler).dempenstoppen();
 		}
 	}
-
-
 }

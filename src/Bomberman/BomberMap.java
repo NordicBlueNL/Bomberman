@@ -6,35 +6,33 @@ import java.util.Vector;
 import javax.swing.*;
 //BomberMap, de Map voor aan het begin. en alle plaatjes bijhoud in het spel. waar wat staat en welke plaatjes waar gebruikt worden
 
+
 public class BomberMap extends JPanel
 {
 	private class Bonus
 	{
 
-		public int r;
-		public int c;
+		public int r = 0;
+		public int c = 0;
 
 		public Bonus(int i, int j)
 		{
-			r = 0;
-			c = 0;
-			r = i >> 4;
-			c = j >> 4;
+			this.r = i >> 4;
+			this.c = j >> 4;
 		}
 	}
 
 	private class Bomb
 	{
-
 		public int r;
 		public int c;
 
 		public Bomb(int i, int j)
 		{
-			r = 0;
-			c = 0;
-			r = i >> 4;
-			c = j >> 4;
+			this.r = 0;
+			this.c = 0;
+			this.r = i >> 4;
+			this.c = j >> 4;
 		}
 	}
 
@@ -52,8 +50,8 @@ public class BomberMap extends JPanel
 	public BomberBommen bombGrid[][];
 	//array voor de bonussen (vuur) in het spel
 	public BomberBonus bonusRooster[][];
-	private Vector bombs;
-	private Vector bonuses;
+	private Vector<Bomb> bombs;
+	private Vector<Bonus> bonuses;
 	//plaatjes Bomberbommen/map/vuur en bonusimages
 	private static Image mapImages[][];
 	public static Image bombPlaatjes[];
@@ -110,7 +108,6 @@ public class BomberMap extends JPanel
 						mediatracker.addImage(mapImages[k][i1], i++);
 					}
 				}
-
 			}
 
 			for(int k1 = 0; k1 < 2; k1++)
@@ -131,15 +128,14 @@ public class BomberMap extends JPanel
 				}
 
 			}
-
 			mediatracker.waitForAll();
 		}
 		catch(Exception exception)
 		{
 			new ErrorDialog(exception);
 		}
-		bombs = new Vector();
-		bonuses = new Vector();
+		bombs = new Vector<Bomb>();
+		bonuses = new Vector<Bonus>();
 		fireRooster = new boolean[17][17];
 		bombGrid = new BomberBommen[17][17];
 		bonusRooster = new BomberBonus[17][17];
@@ -163,7 +159,6 @@ public class BomberMap extends JPanel
 				bombGrid[j][l] = null;
 				bonusRooster[j][l] = null;
 			}
-
 		}
 
 		BomberRandInt bomberrandint = new BomberRandInt(1, 15);
@@ -176,7 +171,6 @@ public class BomberMap extends JPanel
 				rooster[j1][l1] = 1;
 			}
 		}
-
 		rooster[1][1] = rooster[2][1] = rooster[1][2] = rooster[1][15] = rooster[2][15] = rooster[1][14] = rooster[15][1] = rooster[14][1] = rooster[15][2] = rooster[15][15] = rooster[15][14] = rooster[14][15] = -1;
 		//achtergrondkleur
 		backgroundColor = new Color(52, 108, 108);
@@ -187,14 +181,12 @@ public class BomberMap extends JPanel
 		setOpaque(false);
 		bombermain.getLayeredPane().add(this, 1000);
 	}
-
 	public void setGameOver()
 	{
 		gameOver = true;
 		//	paintImmediately(0, 0, 272, 272);
 		paintImmediately(0, 0, 272, 272);
 	}
-
 	public synchronized void createBonus(int i, int j)
 	{
 		int k = (i >> 4) << 4;
@@ -206,7 +198,6 @@ public class BomberMap extends JPanel
 			bonuses.addElement(new Bonus(k, l));
 		}
 	}
-
 	public synchronized void removeBonus(int i, int j)
 	{
 		int k = 0;
@@ -228,9 +219,7 @@ public class BomberMap extends JPanel
 			}
 			k++;
 		}
-
 	}
-
 	public synchronized void createBomb(int i, int j, int k)
 	{
 		int l = (i >> 4) << 4;
@@ -238,7 +227,7 @@ public class BomberMap extends JPanel
 		bombGrid[l >> 4][i1 >> 4] = new BomberBommen(this, l, i1, k);
 		bombs.addElement(new Bomb(l, i1));
 	}
-
+	
 	public synchronized void removeBomb(int i, int j)
 	{
 		int k = 0;
@@ -256,7 +245,6 @@ public class BomberMap extends JPanel
 				}
 				k++;
 			}
-
 	}
 
 	public void createFire(int i, int j, int k, int l)
@@ -415,7 +403,6 @@ public class BomberMap extends JPanel
 					createFire(i1 - k4 * byte1, j1, k, 2);
 				}
 			}
-
 		}
 	}
 
@@ -451,9 +438,7 @@ public class BomberMap extends JPanel
 								g1.drawImage(mapImages[level][2], i << 4, j << 4, 16, 16, null);
 							}
 					}
-
 				}
-
 			}
 		if(!gameOver)
 		{
@@ -480,7 +465,6 @@ public class BomberMap extends JPanel
 				}
 				k++;
 			}
-
 		}
 	}
 
@@ -491,7 +475,6 @@ public class BomberMap extends JPanel
 		if(gameOver)
 		{
 			graphics2d.setColor(Color.black);
-
 			//was graphics2d.fillRect(0, 0, 272, 272);
 			graphics2d.fillRect(0, 0, 272, 272);
 		} else
@@ -514,9 +497,7 @@ public class BomberMap extends JPanel
 							graphics2d.drawImage(mapImages[level][2], i << 4, j << 4, 16, 16, null);
 						}
 				}
-
 			}
-
 		}
 	}
 
@@ -639,7 +620,6 @@ public class BomberMap extends JPanel
 					String s2 = BomberMain.RP + "src/Images/BomberFireBricks/" + (l1 + 1) + (j1 + 1) + ".gif";
 					fireBrickImages[l1][j1] = Toolkit.getDefaultToolkit().getImage((new File(s2)).getCanonicalPath());
 				}
-
 			}
 
 			for(int i2 = 0; i2 < 2; i2++)
@@ -649,9 +629,7 @@ public class BomberMap extends JPanel
 					String s3 = BomberMain.RP + "src/Images/BomberBonuses/" + (i2 != 0 ? "B" : "F") + (k1 + 1) + ".gif";
 					bonusImages[i2][k1] = Toolkit.getDefaultToolkit().getImage((new File(s3)).getCanonicalPath());
 				}
-
 			}
-
 		}
 		catch(Exception exception)
 		{
