@@ -9,12 +9,13 @@ import javax.sound.midi.*;
 import javax.sound.sampled.*;
 import javax.swing.*;
 
-//SoundPlayer, hierin worden alle nummers geselecteerd wanneer wat welk nummer terecht komt en afgespeeld word
+//SoundPlayer wordt gebruikt voor de geluidseffecten
+@SuppressWarnings("serial")
 public class SoundPlayer extends JPanel
 implements Runnable, LineListener, MetaEventListener, ActionListener
 {
 
-	public Vector Muziek;
+	public Vector<File> Muziek;
 	private Thread thread;
 	private Sequencer sequencer;
 	private boolean midiEOM;
@@ -35,7 +36,7 @@ implements Runnable, LineListener, MetaEventListener, ActionListener
 
 	public SoundPlayer(String s)
 	{
-		Muziek = new Vector();
+		Muziek = new Vector<File>();
 		num = -1;
 		gepauzeerd = false;
 		loop = true;

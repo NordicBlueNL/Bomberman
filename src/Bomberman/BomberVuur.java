@@ -5,17 +5,14 @@ import java.awt.*;
 //BomberFire Thread. Klasse Vuur na de Bom
 public class BomberVuur extends Thread
 {
-	//Bombermap linken aan Bombervuur 
+
 	private BomberMap map;
-	//array rooster vuurplaatjes
 	private int rooster[][];
 	private int x;
 	private int y;
 	private int type;
 	private int frame;
-	//bijwie hoort het vuur
 	private int eigenaar;
-	//Array plaatjes vuur
 	private static Image plaatjes[][] = null;
 	private static Object hints = null;
 
@@ -62,10 +59,10 @@ public class BomberVuur extends Thread
 			}
 
 			frame = frame + 1;
-			try
-			{
-				Thread.sleep(65L);
-			}
+				try
+				{
+					Thread.sleep(65L);
+				}
 			catch(Exception exception) { }
 		} 
 
@@ -102,7 +99,7 @@ public class BomberVuur extends Thread
 		//was graphics2d.drawImage(plaatjes[type][frame],x,y,16,16,null)
 		graphics2d.drawImage(plaatjes[type][frame], x, y, 16,16, null);
 	}
-	//toetshoudbaarheid (Java2)
+	//toetshoudbaarheid
 	static 
 	{
 		if(Main.J2)
