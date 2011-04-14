@@ -6,18 +6,27 @@ import java.io.File;
 
 public class BomberPlayer extends Thread
 {
-	
+	//BomberSpel linken met BomberPlayer
     public BomberSpel game;
+    //BomberMap linken met BomberPlayer
     private BomberMap map;
+    //Boolean bombGrid 
     public boolean bombGrid[][];
+    //BomberKeyQueue linken met BomberPlayer (keys aan speler koppelen)
     private BomberKeyQueue keyQueue;
+    //Boolean bombKeyDown
     private boolean bombKeyDown;
+    //byte dirKeysDown
     private byte dirKeysDown;
+    //byte currentDirKeyDown 
     private byte currentDirKeyDown;
-
+    //Boolean isExploding(explosie)
     private boolean isExploding;
+    //Boolean isDead (persoon is dood)
     private boolean isDead;
+    //Boolean keyPressed(keypressed)
     private boolean keyPressed;
+    //
     private int keys[];
     public int totalBombs;
     public int usedBombs;
