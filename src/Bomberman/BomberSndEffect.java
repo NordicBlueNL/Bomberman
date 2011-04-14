@@ -6,23 +6,23 @@ import java.io.File;
 public class BomberSndEffect extends Thread
 {
 
-    public BomberSndEffect()
-    {
-        start();
-    }
+	public BomberSndEffect()
+	{
+		start();
+	}
 
-    public void speelmuziek(String s)
-    {
-        if(Main.J2)
-        {
-            SoundPlayer soundplayer = null;
-            try
-            {
-                soundplayer = new SoundPlayer((new File(BomberMain.RP + "src/Sounds/BomberSndEffect/" + s + ".mid")).getCanonicalPath());
-            }
-            catch(Exception exception) { }
-            soundplayer.open();
-            soundplayer.aanpassen(0, false);
-        }
-    }
+	public void speelmuziek(String s)
+	{
+		if(Main.J2)
+		{
+			SoundPlayer soundplayer = null;
+			try
+			{
+				soundplayer = new SoundPlayer((new File(BomberMain.RP + "src/Sounds/BomberSndEffect/" + s + ".mid")).getCanonicalPath());
+			}
+			catch(Exception exception) { }
+			soundplayer.open();
+			soundplayer.aanpassen(0, false);
+		}
+	}
 }

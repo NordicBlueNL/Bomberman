@@ -528,10 +528,10 @@ public class BomberMap extends JPanel
 		}
 		//was levelRand = new BomberRandInt(0,100);
 		levelRand = new BomberRandInt(0, 100);
-		
+
 		//was bonusRand = new BomberRandInt(0,7);
 		bonusRand = new BomberRandInt(0, 7);
-		
+
 		mapImages = new Image[3][3];
 		bombPlaatjes = new Image[2];
 		fireImages = new Image[8][8];

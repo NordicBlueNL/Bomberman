@@ -34,12 +34,12 @@ implements ActionListener
 	public static BomberPlayer spelers[] = null;
 	//Sounds in de Game
 	MP3 gamesound = new MP3("./src/Sounds/BomberBGM/gamesound.mp3");
-	
+
 
 	//BomberGame erft van BomberMain en BomberMap.
 	public BomberSpel(BomberMain bombermain, BomberMap bombermap, int i)
 	{
-	
+
 		main = null;
 		gameOver = false;
 		map = null;
@@ -55,8 +55,8 @@ implements ActionListener
 		{ 
 			gamesound.play();
 		}
-		
-		
+
+
 		try
 		{
 			MediaTracker mediatracker = new MediaTracker(this);
@@ -91,13 +91,13 @@ implements ActionListener
 			for(int i = 0; i < totaalSpelers; i++)
 			{
 				spelers[i].keyPressed(keyevent);
-				
+
 			}
 
 		} else
 			if(keyevent.getKeyCode() == 10)
 			{
-				
+
 				timer.stop();
 				timer = null;
 				main.dispose();
@@ -211,7 +211,7 @@ implements ActionListener
 					gamesound.close();
 					continue;
 				}
-			
+
 				winnaar = i;
 				break; 
 			}
