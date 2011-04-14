@@ -9,19 +9,25 @@ import javax.swing.*;
 //BomberMenu, het beginmenu van het spel. 
 public class BomberMenu extends JPanel
 {
-
+	//BomberMenu linken met BomberMain
     private BomberMain main;
+    //Array BomberImageButtons
     private BomberImageButton imageButtons[];
+    //Int Selection Image
     private int selection;
+    //Image BachgroundImage 
     private static Image backgroundImg = null;
+    //Image Buttonimage down
     private static Image buttonImagesDown[];
+    //Image Buttonimage Up
     private static Image buttonImagesUp[];
+    //Object hints
     private static Object hints = null;
   
 	
     public BomberMenu(BomberMain bombermain)
     {
-    	//mpmenusound.play();
+    	
         main = null;
         imageButtons = null;
         selection = 0;
@@ -171,6 +177,8 @@ public class BomberMenu extends JPanel
             renderinghints.put(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
             hints = renderinghints;
         }
+        
+        //plaatjes laden BomberMenu
         buttonImagesDown = new Image[5];
         buttonImagesUp = new Image[5];
         Toolkit toolkit = Toolkit.getDefaultToolkit();

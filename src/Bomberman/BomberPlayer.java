@@ -6,7 +6,7 @@ import java.io.File;
 
 public class BomberPlayer extends Thread
 {
-
+	
     public BomberSpel game;
     private BomberMap map;
     public boolean bombGrid[][];

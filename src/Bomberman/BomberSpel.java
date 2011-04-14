@@ -10,24 +10,36 @@ public class BomberSpel extends JPanel
 implements ActionListener
 {
 
+	//Bombermain linken naar BomberSpel
 	private BomberMain main;
+	//Boolean GameOver
 	private boolean gameOver;
+	//Bombermap linken naar BomberSpel
 	private BomberMap map;
+	//Int Winnaar
 	private int winnaar;
 	//Timer om tijd bij te houden spel. 
 	private Timer timer;
+	//Ints verstrekenSeconden 
 	private int verstrekenSeconden;
+	//Object hints 
 	private static Object hints = null;
+	//Array plaatjes 
 	private static Image plaatjes[];
+	//Int totaalSpelers (2, 3 of 4)
 	public static int totaalSpelers;
+	//Int spelerLinks 
 	public static int spelerLinks;
+	//Array BomberPlayer spelers
 	public static BomberPlayer spelers[] = null;
+	//Sounds in de Game
 	MP3 gamesound = new MP3("./src/Sounds/BomberBGM/gamesound.mp3");
-	MP3 oversound = new MP3("./src/Sounds/BomberBGM/oversound.mp3");
+	
 
 	//BomberGame erft van BomberMain en BomberMap.
 	public BomberSpel(BomberMain bombermain, BomberMap bombermap, int i)
 	{
+	
 		main = null;
 		gameOver = false;
 		map = null;
@@ -79,13 +91,13 @@ implements ActionListener
 			for(int i = 0; i < totaalSpelers; i++)
 			{
 				spelers[i].keyPressed(keyevent);
-				oversound.close();
+				
 			}
 
 		} else
 			if(keyevent.getKeyCode() == 10)
 			{
-				oversound.close();
+				
 				timer.stop();
 				timer = null;
 				main.dispose();
@@ -203,7 +215,6 @@ implements ActionListener
 				winnaar = i;
 				break; 
 			}
-			
 			gameOver = true;
 			map.setGameOver();
 			timer.stop();
@@ -213,22 +224,9 @@ implements ActionListener
 
 		if(gameOver)
 		{	
-			//timer overheen gooien?
-			oversound.play();
-			
-			//oversound.close();
-			
 			verstrekenSeconden %= 2;
 			paintImmediately(0, 272 - plaatjes[5].getHeight(this) / 2, plaatjes[5].getWidth(this) / 2, plaatjes[5].getHeight(this) / 2);
-		
-		
 		}
-		
-	
-			//if( ! gameOver)
-			//  { 
-			//   oversound.close();
-			//   } 
 	}
 	// Houd de keys in stand en laat zien wie er de winnaar is.(dmv een plaatje)
 	static 
@@ -247,6 +245,7 @@ implements ActionListener
 			renderinghints.put(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
 			hints = renderinghints;
 		}
+		//Plaatjes laden einde game
 		String s = BomberMain.RP + "src/Images/BomberEndGame/";
 		plaatjes = new Image[6];
 		try
