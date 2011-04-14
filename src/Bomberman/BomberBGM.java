@@ -12,7 +12,6 @@ public class BomberBGM
 	//public BomberBGM
 	public BomberBGM()
 	{
-
 	}
 	static //Als je Java2 hebt(muziek laden)
 	{
