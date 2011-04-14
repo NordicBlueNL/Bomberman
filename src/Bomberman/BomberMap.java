@@ -38,21 +38,29 @@ public class BomberMap extends JPanel
 		}
 	}
 
-
-	//private BomberMain main;
+	//BomberMain linken aan BomberMap
+	private BomberMain main;
+	//Boolean voor controle of het spel over is
 	private boolean gameOver;
+	//color voor background gameover
 	private Color backgroundColor;
+	//Array van roostervakjes grond en muur
 	public int rooster[][];
+	//Array roostervakjes voor vuur
 	public boolean fireRooster[][];
+	//Array voorbijhouden aantal bommen in het spel
 	public BomberBommen bombGrid[][];
+	//array voor de bonussen (vuur) in het spel
 	public BomberBonus bonusRooster[][];
 	private Vector bombs;
 	private Vector bonuses;
+	//plaatjes Bomberbommen/map/vuur en bonusimages
 	private static Image mapImages[][];
 	public static Image bombPlaatjes[];
 	public static Image fireImages[][];
 	public static Image fireBrickImages[][];
 	public static Image bonusImages[][];
+	//welke plaatjes moeten waar gebruikt worden
 	public static final int FIRE_CENTER = 0;
 	public static final int FIRE_VERTICAL = 1;
 	public static final int FIRE_HORIZONTAL = 2;
@@ -61,11 +69,15 @@ public class BomberMap extends JPanel
 	public static final int FIRE_EAST = 5;
 	public static final int FIRE_WEST = 6;
 	public static final int FIRE_BRICK = 7;
+	//bonusplaatjes wat en waar verstopt... 
 	public static final int BONUS_FIRE = -4;
 	public static final int BONUS_BOMB = -3;
 	public static final int NOTHING = -1;
+	//muur
 	public static final int WALL = 0;
+	//steentje die weg geblazen kan worden door bom
 	public static final int BRICK = 1;
+	//Bom
 	public static final int BOMB = 3;
 	private static BomberRandInt levelRand = null;
 	private static BomberRandInt bonusRand = null;

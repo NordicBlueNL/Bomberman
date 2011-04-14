@@ -78,13 +78,17 @@ implements ActionListener
 		}
 	}
 
-
+	//keys bij houden in array 
 	private int keys[][];
+	//onthouden welke keys de user wilt gebruikten
 	private int keysBeingSet[] = {
 			-1, -1
 	};
+	//waiting for key is als spel moet wachten totdat de key word ingedrukt door gebruiker
 	private boolean waitingForKey;
+	//buttons keymanager
 	private JButton buttons[][];
+	//fields met tekst/key
 	private JTextField keyFields[][];
 
 	//JFrame Keys

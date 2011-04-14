@@ -23,7 +23,7 @@ public class BomberMenu extends JPanel
 	private static Image buttonImagesUp[];
 	//Object hints
 	private static Object hints = null;
-
+ 
 
 	public BomberMenu(BomberMain bombermain)
 	{
@@ -120,6 +120,7 @@ public class BomberMenu extends JPanel
 			break;
 
 		case 4: // '\004'
+			//in engels gezet omdat je dan het spel bij mindertalige nederlanders ook begrepen kan worden
 			JOptionPane joptionpane = new JOptionPane("Are you sure you want to exit Bomberman?");
 			joptionpane.setOptionType(0);
 			joptionpane.setMessageType(2);

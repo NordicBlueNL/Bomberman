@@ -5,13 +5,14 @@ import java.awt.*;
 //Klasse BomberBonus, ook deze heeft een thread. 
 public class BomberBonus extends Thread
 {
-
+	//BomberMap linken met BOmberBonus
 	private BomberMap map;
 	private int x;
 	private int y;
 	private int frame;
 	private boolean levend;
 	private int type;
+	//Array plaatjes bomberBonus
 	private Image plaatjes[];
 	private static Object hints = null;
 	private static int VUUR = 0;

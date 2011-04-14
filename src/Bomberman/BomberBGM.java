@@ -5,7 +5,7 @@ import java.io.File;
 //Bomberman BackGroundManager 
 public class BomberBGM
 {
-
+	//Object muziek speler // backgroundmanager 
 	private static Object mspeler;
 	private static int laatstGeselecteerd = -1;
 
@@ -14,7 +14,7 @@ public class BomberBGM
 	{
 
 	}
-	static //Als je Java2 hebt
+	static //Als je Java2 hebt(muziek laden)
 	{
 		if(Main.J2)
 		{
@@ -71,6 +71,6 @@ public class BomberBGM
 			((SoundPlayer)mspeler).dempenstoppen();
 		}
 	}
-	//Algemeen einde om  o.a. de muziek te laden
+
 
 }

@@ -9,10 +9,12 @@ import javax.swing.JFrame;
 //BomberMain de hoofdapp die dus JFrame gebruikt en de vormgeving van de app, het programma 
 public class BomberMain extends JFrame
 {
-
+	//realpath vaststellen totaan src. 
 	public static String RP = "./";
+	//Bombermenu en bomberspel koppelen aan bombermain
 	private BomberMenu menu;
 	private BomberSpel game;
+	//Bombersoundeffect soundeffectspeler voor de effectgeluiden
 	public static BomberSndEffect sndEffectSpeler = null;
 	public static final int shiftCount = 4;
 	//was public static final int size = 16;
@@ -65,7 +67,7 @@ public class BomberMain extends JFrame
 			new ErrorDialog(exception);
 		}
 		getContentPane().add(menu = new BomberMenu(this));
-		setResizable(true);//was false (niet groter kunnen maken)
+		setResizable(false);//scherm kan niet groter gemaakt worden
 		pack();
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		int i = (dimension.width - getSize().width) / 2;

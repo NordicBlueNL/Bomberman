@@ -5,7 +5,7 @@ import java.io.File;
 //SoundEffect, bomberman. welke sounds gebruikt worden bij welke acties. 
 public class BomberSndEffect extends Thread
 {
-
+	//effectspeler voor de effecten in het geluid, als een speler dood gaat/bom ontploft of bonus pakken
 	public BomberSndEffect()
 	{
 		start();

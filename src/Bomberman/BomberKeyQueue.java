@@ -5,9 +5,11 @@ public class BomberKeyQueue
 {
 	private class Node
 	{
-
+		//data die deze laad
 		public byte data;
+		//vorige knooppunt
 		public Node vorige;
+		//volgende knooppunt
 		public Node volgende;
 
 		public Node(byte byte0)
@@ -19,9 +21,11 @@ public class BomberKeyQueue
 		}
 	}
 
-
+	//knooppunt hoofd
 	private Node head;
+	//knooppunt lichaam
 	private Node tail;
+	//knooppunt totaal aantal items
 	private int totaalItems;
 
 	public BomberKeyQueue()

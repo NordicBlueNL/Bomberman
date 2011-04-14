@@ -6,15 +6,18 @@ import java.awt.*;
 public class BomberBommen extends Thread
 {
 
+	//BomberMap linken aan BomberBommen
 	private BomberMap map;
 	private int x;
 	private int y;
 	private int frame;
 	//levend of niet levend?
 	private boolean levend;
+	//welke speler hoort bij welke eigenaar. 
 	private int eigenaar;
 	//Tijd bijna over?
 	private int aftellen;
+	//Array plaatjes
 	private static Image plaatjes[] = null;
 	private static Object hints = null;
 

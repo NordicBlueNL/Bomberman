@@ -3,7 +3,7 @@ package Bomberman;
 //BombermanRandint randen om het spel heen 
 public class BomberRandInt
 {
-
+	//rand grootte en hoogte en locatie geven
 	private int low;
 	private int high;
 	private static double buffer[];

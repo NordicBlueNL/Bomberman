@@ -6,8 +6,11 @@ import javax.swing.UIManager;
 public class Main
 {
 
+	//Main classe aan BomberMain koppelen
 	public static BomberMain bomberMain = null;
+	//Plaatjespad waar de bombermanplaatjes zijn vastleggen tot src/(hetzelfde)
 	public static final String plaatjepad = "./";
+	//Boolean controle of Java2 geinstalleerd is. 
 	public static boolean J2 = false;
 
 	public Main()

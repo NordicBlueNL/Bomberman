@@ -6,20 +6,29 @@ public abstract class BomberKeyConfig
 {
 
 	public static int toetsen[][] = null;
+	//speler 1
 	public static final int P1 = 0;
+	//speler 2
 	public static final int P2 = 1;
+	//speler 3 
 	public static final int P3 = 2;
+	//speler 4
 	public static final int P4 = 3;
+	//pijltje omhoog
 	public static final int UP = 0;
+	//pijltje naar beneden
 	public static final int DOWN = 1;
+	//pijltje naar links
 	public static final int LEFT = 2;
+	//pijltje naar rechts
 	public static final int RIGHT = 3;
+	//bomtoets
 	public static final int BOMB = 4;
 
 	public BomberKeyConfig()
 	{
 	}
-
+//een bestand waar de arraylist en toetsen van de spelers in word bewaard gekoppeld aan het spel
 	public static boolean openBestand()
 	{
 		boolean flag = true;

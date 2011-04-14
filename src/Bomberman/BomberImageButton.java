@@ -6,13 +6,14 @@ import javax.swing.JPanel;
 //BomberImageButton, de buttonsplaatjes zoals Controlsettings, aantal spelers die spelen en Exit menu. 
 public class BomberImageButton
 {
-
+	//ImageButton JPanel 
 	private JPanel paneel;
 	private int x;
 	private int y;
 	private int ID;
 	private int w;
 	private int h;
+	//plaatjes buttons
 	private Image plaatjes[];
 	private int staat;
 	private static Object hints = null;

@@ -20,7 +20,7 @@ implements ActionListener
 	private int winnaar;
 	//Timer om tijd bij te houden spel. 
 	private Timer timer;
-	//Ints verstrekenSeconden 
+	//Ints verstrekenSeconden  
 	private int verstrekenSeconden;
 	//Object hints 
 	private static Object hints = null;

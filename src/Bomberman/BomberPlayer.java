@@ -26,16 +26,21 @@ public class BomberPlayer extends Thread
     private boolean isDead;
     //Boolean keyPressed(keypressed)
     private boolean keyPressed;
-    //
+    //Int Keys[] deze houd de keys bij het spel en speler
     private int keys[];
+    //totalboms (start speler met 1 bom)
     public int totalBombs;
+    //usedboms (speler heeft x aantal gebruikt) 
     public int usedBombs;
+    //int firelength (houd de lengte van vuur bij
     public int fireLength;
+    //boolean isActive houd bom bij of deze geplaats is of niet
     public boolean isActive;
     public int x;
     public int y;
     private int playerNo;
     private int state;
+    //Moving voor: is de speler aan het lopen of niet. 
     private boolean moving;
     private int frame;
     private boolean clear;
@@ -56,8 +61,11 @@ public class BomberPlayer extends Thread
         isDead = false;
         keyPressed = false;
         keys = null;
+        //speler start met 1 bom
         totalBombs = 1;
+        //speler heeft er nog 0 gebruikt
         usedBombs = 0;
+        //vuurlengte is 2 vakjes naar links/rechts/beneden/boven
         fireLength = 2;
         isActive = true;
         x = 0;
@@ -630,6 +638,7 @@ public class BomberPlayer extends Thread
             renderinghints.put(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
             hints = renderinghints;
         }
+        
         sprites = new Image[4][5][5];
         int ai[] = {
             0, 1, 2, 3, 4
